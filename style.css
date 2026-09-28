@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/* 本来のマウスカーソルを非表示にする */
+* {
+    cursor: none !important;
+}
+
+/* 中央のドット */
+.custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+/* 外側の円 */
+.custom-cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+}
+
+section
+{
+    text-align: center;
+    padding: 40px 20px;
+}
+
+img
+{
+    height: 350px;
+    object-fit: contain;
+}
