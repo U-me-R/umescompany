@@ -6,16 +6,47 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- ファビコン -->
-  <!-- <link rel="icon" href="/static/img/favicon.ico" type="image/png"> -->
 
-  <!-- デザイン -->
-  <link rel="stylesheet" href="style.css">
-  
+<!-- 検索エンジン最適化の設定(SEO) -->
+    <!-- ページのタイトル -->
   <title>
-    ume'sCompany
+    ume'sCompany | セキュリティ事業に向けた技術実験・準備中
   </title>
+    <!-- タイトルの下に出てくる説明文 -->
+  <meta 
+    name="description"
+    content="セキュリティ事業の立ち上げに挑むUme'sCompany公式サイト。学生エンジニアによる最先端サイバーセキュリティの探求、技術発信、準備中の挑戦プロジェクトの最新情報を集約しています。"
+  >
+    <!-- 検索エンジンによるページの登録を許可する設定(書かなくても同じ動きをする) -->
+  <meta name="robots" content="index, follow">
+    <!-- 正規URLを指定(URLの重複防止と評価の集約ができる) -->
+  <link rel="canonical" href="https://umescompany.com/">
+
+
+<!-- WebページがSNSでシェアされた際に、表示させる設定(OGP) -->
+    <!-- ページの種類の設定 -->
+  <meta property="og:type" content="website">
+    <!-- ページのURL -->
+  <meta property="og:url" content="https://umescompany.com/">
+    <!-- 共有時に表示するタイトル -->
+  <meta property="og:title" content="Ume's Company">
+    <!-- 共有時に表示する説明文 -->
+  <meta
+    property="og:description"
+    content="セキュリティ事業の立ち上げに挑むUme'sCompany公式サイト。学生エンジニアによる最先端サイバーセキュリティの探求、技術発信、準備中の挑戦プロジェクトの最新情報を集約しています。"
+  >
+    <!-- 共有時に表示する画像 -->
+  <meta property="og:image" content="https://umescompany.com/img/Image.jpg">
+
+
+<!-- faviconリンク -->
+  <link rel="icon" href="img/favicon.ico" type="image/png">
+
+<!-- cssリンク -->
+  <!-- メインデザイン -->
+  <link rel="stylesheet" href="css/style.css">
+  
+
 
 </head>
 
@@ -26,7 +57,7 @@
   <div class="custom-cursor-outline"></div>
 
   <section>
-    <a href="#"><img src="Image.jpg" alt="ロゴの予定のもの"></a>
+    <a href="#"><img src="img/Image.jpg" alt="ロゴの予定のもの"></a>
     <h1>Ume's Company - テスト環境</h1>
     <p>現在、学生オーナーがセキュリティ事業に向けて大絶賛準備＆実験中です。</p>
   </section>
@@ -34,7 +65,7 @@
 
 <!-- GSAPの読み込み -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-<script src="main.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

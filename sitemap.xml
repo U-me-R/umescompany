@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--サイトマップ(検索エンジンにサイト内のURLを伝えるためのファイル)-->
+    <!-- サイト内の複数のURL情報を囲んでまとめるための開始タグ -->
+    <!-- xmlns=""はルールの定義元の指定 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Ume'sCompany トップページ -->
+  <url>
+    <loc>https://umescompany.com/</loc>
+  </url>
+
+</urlset>

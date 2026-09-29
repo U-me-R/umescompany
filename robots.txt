@@ -1,0 +1,11 @@
+# robots.txt
+# 検索エンジンのクローラーにサイトのクロール方針を伝えるファイル
+
+# すべての検索エンジンのクローラーを対象にする
+User-agent: *
+
+# サイト全体のクロールを許可する
+Allow: /
+
+# サイトマップの場所を検索エンジンに伝える
+Sitemap: https://umescompany.com/sitemap.xml
