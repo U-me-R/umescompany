@@ -17,12 +17,10 @@
 
   <!-- 検索エンジン最適化の設定(SEO) -->
       <!-- ページのタイトル -->
-    <!-- 事業内容(サプライチェーン/セキュリティ)が検索語に含まれるよう変更。準備中であることは正直に残している) -->
     <title>
-      Ume'sCompany | サプライチェーンのセキュリティを可視化するLabo.（準備中）
+      Ume'sCompany
     </title>
       <!-- タイトルの下に出てくる説明文 -->
-    <!-- 修正箇所2026/10/15 (旧: 「最先端サイバーセキュリティの探求」が実際の事業内容とズレていた。事業の中身と検索されやすい語(SCS評価制度・取引先・中小企業)に合わせて修正) -->
     <meta
       name="description"
       content="Ume'sCompanyは、大企業と取引先をつなぎ、セキュリティの状況を見える化して改善につなげるプロジェクト「Labo.」を準備中の学生運営サイトです。中小企業のSCS評価制度への備えを支援するサービスを検証しています。"
@@ -43,15 +41,14 @@
     <meta property="og:locale" content="ja_JP">
       <!-- 共有時に表示するタイトル -->
     <!-- 修正箇所2026/10/15 (旧: ブランド名のみで内容が伝わらなかったため、titleと揃えて説明を追加) -->
-    <meta property="og:title" content="Ume'sCompany | サプライチェーンのセキュリティを可視化するLabo.">
+    <meta property="og:title" content="Ume'sCompany">
       <!-- 共有時に表示する説明文 -->
     <meta
       property="og:description"
       content="大企業と取引先をつなぎ、セキュリティの状況を見える化して改善につなげるプロジェクト「Labo.」を準備中の学生運営サイトです。"
     >
       <!-- 共有時に表示する画像 -->
-    <!-- 修正箇所2026/10/15 (TODO: 白文字ロゴの透過PNGは明るいSNS画面で見えにくい。暗い背景付きの 1200×630px の画像(例: src/img/ogp.png)を用意し、下の2行のURLを差し替えてください。画像はこちらでは作成できないため現状のロゴのまま・altのみ追加) -->
-    <meta property="og:image" content="https://umescompany.com/src/img/Umescompany/logo_white.png">
+    <meta property="og:image" content="https://umescompany.com/src/img/Umescompany/logo_black.png">
     <meta property="og:image:alt" content="Ume'sCompanyのロゴ">
       <!-- 修正箇所2026/10/15 (X(旧Twitter)でカード表示するために追加) -->
     <meta name="twitter:card" content="summary_large_image">
@@ -76,7 +73,7 @@
     <link rel="stylesheet" href="/src/css/cursor.css">
 
   <!-- 構造化データ(JSON-LD) -->
-    <!-- 修正箇所2026/10/15 (検索エンジンに組織名・ロゴ・サイト名を伝えるために追加。法人化前のため legalName などは入れていない。SNSアカウントが決まったら Organization に "sameAs": ["URL", ...] を追加してください) -->
+    <!-- 修正箇所2026/10/15 (検索エンジンに組織名・ロゴ・サイト名を伝えるために追加。法人化前のため legalName などは入れていない。SNSアカウントが決まったら Organization に "sameAs": ["URL", ...] を追加) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -122,7 +119,7 @@
       <nav class="train_one" aria-label="メインメニュー">
           <!-- 会社ロゴ threejsで3Dモデルにする予定 -->
         <figure>
-          <!-- 修正箇所2026/10/15 (decoding="async" を追加し、画像のデコードで描画を止めないようにした。TODO: 画像の実寸を width/height 属性で指定するとレイアウトのズレ(CLS)を防げます) -->
+          <!-- 修正箇所2026/10/15 (decoding="async" を追加し、画像のデコードで描画を止めないようにした。) -->
           <img src="/src/img/Umescompany/logo_white.png" alt="Ume'sCompany" decoding="async">
         </figure>
 
@@ -183,7 +180,7 @@
       <section class="train_one hiro">
         <h1>Ume'sCompany</h1>
         <p>交わり.育ち.繋がる.人と企業の間に、信頼が育つ場をつくる</p>
-        <!-- 修正箇所2026/10/15 (装飾の背景動画なので aria-hidden を追加。preload="metadata" で先読み量を抑制。TODO: ファイル名に ' と大文字が含まれURLの扱いで問題になりやすいため、src/video/umes-company.webm などにリネームして下の src も変更してください。poster画像・mp4版の用意も推奨) -->
+        <!-- 修正箇所2026/10/15 (装飾の背景動画なので aria-hidden を追加。 -->
         <video autoplay loop muted playsinline preload="metadata" aria-hidden="true">
           <source src="/src/video/ume'sCompany.webm" type="video/webm">
         </video>
@@ -401,7 +398,7 @@
             <article>
               <h3>Blog.</h3>
               <p class="nomal">
-                技術的な話や開発の泥臭い裏話など掲載予定
+                技術的な話や開発の裏話など掲載予定
               </p>
               <p class="read_more is_disabled">Coming soon●</p>
             </article>
@@ -489,7 +486,6 @@
         </p>
 
         <p>
-          <!-- 修正箇所2026/10/15 (旧: 「負荷ゼロ・即時診断」「即座に採点」が断定的で、準備中のサービスとして誇大に見える恐れがあった。非侵入型・目安である旨に表現を調整。内容が意図とズレていれば戻してください) -->
           <span>非侵入型のかんたん診断</span>
           ご自身が管理するドメインを入力するだけで、システムを止めることなく安全度を目安として採点します
         </p>
@@ -561,7 +557,6 @@
         </p>
 
         <p>
-          <!-- 修正箇所2026/10/15 (旧: 「リスクを避れる一方」が誤字で意味が通らなかった。企画メモの仮説(中小企業は取引を失うリスクを恐れている)に合わせ「抱える一方」と推測して修正。意図と違えば直してください。また「SCS評価制度」が説明なしに使われていたため正式名称を併記。名称は公式発表で要確認) -->
           国の「SCS評価制度（サプライチェーン強化に向けたセキュリティ対策評価制度）」の登場により、中小企業は取引を失うリスクを抱える一方、
           <br>大企業は取引先のセキュリティ状況が見えない不安を抱えています。
           <br>この課題を、双方のメリットに変えて解決します
@@ -592,7 +587,7 @@
       <!-- 3枚目: サービス一覧へ -->
       <article class="labo_panel" id="panel-list">
         <figure>
-          <!-- 修正箇所2026/10/15 (旧: 同じロゴに同じaltが4か所あり冗長だった。装飾画像は alt="" にして読み上げ対象から外した) -->
+          <!-- 修正箇所2026/10/15 (装飾画像は alt="" にして読み上げ対象から外した) -->
           <img src="/src/img/labo_black.png" alt="" loading="lazy" decoding="async">
         </figure>
 
@@ -635,11 +630,9 @@
 
 
   <!-- GSAPの読み込み -->
-    <!-- 修正箇所2026/10/15 (全scriptに defer を追加し、HTMLの解析をブロックしないようにした。順序は defer でも保たれる。TODO: 可能なら integrity(SRI)属性も付与してください) -->
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
   <!-- ScrollTriggerの読み込み -->
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
-  <!-- 修正箇所2026/10/15 (旧: jQuery 1.8.3 を http:// で読み込んでいた(HTTPSサイトでブロックされる)。id_scroll.js を素のJSにしたためjQueryは削除) -->
   <!-- カスタムカーソルの読み込み -->
     <script defer src="/src/js/cursor.js"></script>
   <!-- ポップアップ設定の読み込み -->
