@@ -1,0 +1,39 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    text-decoration: none;
+
+    /* 修正箇所2026/10/15 (旧: 全要素に overflow:auto が掛かっており、意図しないスクロール領域が各所に発生。GSAPのpin/stickyの不具合要因にもなるため削除。必要な要素には個別に overflow を指定済み) */
+
+    /* サイト全体のスクロールバーを非表示にしつつ、スクロールは可能にする */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 修正箇所2026/10/15 (旧: 同じセレクタ *::-webkit-scrollbar が2回重複していたため1つに整理) */
+*::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* 修正箇所2026/10/15 (list-style の指定が無く、ul直下のliに点が出る恐れがあったため追加) */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 修正箇所2026/10/15 (画像・動画が親要素の幅を超えて横スクロールを発生させるのを防ぐため追加) */
+img,
+video {
+    max-width: 100%;
+}
+
+/* 修正箇所2026/10/15 (ボタン要素の既定スタイルを消し、×ボタンやメニューボタンをデザインに合わせやすくするため追加) */
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+}

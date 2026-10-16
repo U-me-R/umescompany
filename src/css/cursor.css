@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* 本来のマウスカーソルを非表示にする */
+/* 修正箇所2026/10/15 (旧: 全環境で cursor:none だったため、タッチ端末では代替カーソルも出ず、キーボード操作時も位置が分かりにくかった。マウス等の精密ポインタ環境のみに限定) */
+@media (hover: hover) and (pointer: fine) {
+    * {
+        cursor: none !important;
+    }
+}
+
+/* カーソル共通 */
+.cursor_dot,
+.cursor_outline {
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+
+    /* 修正箇所2026/10/15 (旧: 最初のマウス移動まで画面左上(0,0)に表示されていたため、初期は非表示にして cursor.js が .is-visible を付けたら表示) */
+    opacity: 0;
+    transition: opacity 0.2s;
+
+    /* 修正箇所2026/10/15 (旧: 色が薄いグレーで、ポップアップの背景(#dddddd)上ではカーソルが見えなくなっていた。背景色と反転して常に見える mix-blend-mode に変更) */
+    mix-blend-mode: difference;
+
+    /* 修正箇所2026/10/15 (旧: transform: translate(-50%,-50%) はGSAPが読み込み時にpx値へ変換して位置指定で上書きされ、中心がずれていた。中心合わせは cursor.js の xPercent/yPercent で行う) */
+}
+
+/* 中央のドット */
+.cursor_dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    z-index: 9999;
+}
+
+/* 外側の円 */
+.cursor_outline {
+    width: 45px;
+    height: 45px;
+    border: 2.345px solid #ffffff;
+    background-color: transparent;
+    z-index: 9998;
+}
+
+/* マウスが動いたら表示 */
+.cursor_dot.is-visible,
+.cursor_outline.is-visible {
+    opacity: 1;
+}
+
+/* 修正箇所2026/10/15 (タッチ端末ではカスタムカーソル自体が不要なため非表示) */
+@media (hover: none), (pointer: coarse) {
+    .cursor_dot,
+    .cursor_outline {
+        display: none;
+    }
+}

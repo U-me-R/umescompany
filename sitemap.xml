@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--サイトマップ(検索エンジンにサイト内のURLを伝えるためのファイル)-->
-    <!-- サイト内の複数のURL情報を囲んでまとめるための開始タグ -->
-    <!-- xmlns=""はルールの定義元の指定 -->
+<!-- 修正箇所2026/10/15 (新規追加: 検索エンジンにページ一覧を伝える。/labo/ やブログ記事など新しいページを作ったら <url> を追加してください) -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Ume'sCompany トップページ -->
   <url>
     <loc>https://umescompany.com/</loc>
+    <lastmod>2026-10-15</lastmod>
   </url>
-
 </urlset>

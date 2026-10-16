@@ -1,0 +1,2109 @@
+/* 共通のクラス */
+
+/* グリッドレイアウトの設定 */
+.grid
+{
+    /* 全面に表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* linear-gradient（線形グラデーション）でデザインを作る */
+        /* 縦線と横線を極細の半透明な白で描く */
+    background-image:
+        linear-gradient( #ffffff2a 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff2a 1px, transparent 1px);
+        /* マスの大きさを指定 */
+    background-size: 70px 60px;
+        /* 最背面に表示 */
+    z-index: 0;
+
+    /* マウスの邪魔をしないようにスルーさせる */
+    pointer-events: none;
+}
+
+/* Train Oneフォント用クラス */
+.train_one
+{
+    /* 修正箇所2026/10/15 (旧: Train Oneが対応しない文字でOS依存のフォントに落ちるのを防ぐため、日本語ゴシックのフォールバックを追加) */
+    font-family: 'Train One', "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+/* メイリオ */
+.nomal
+{
+    /* 修正箇所2026/10/15 (旧: Meiryoのみ指定でMac/Androidでは既定のフォントになっていたため、Hiragino Sans / Noto Sans JP を追加。Windowsの見た目は変えない) */
+    font-family: "Meiryo", "メイリオ", "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+
+/* indexのcss設定 */
+#index
+{
+    width: 100%;
+    /* height ではなく min-height にする */
+    min-height: 100dvh;
+
+    background-color: #181818;
+    color: white;
+
+    /* 修正箇所2026/10/15 (幅の大きい要素(動画・巨大な背景文字)がはみ出して横スクロールが出るのを防ぐ。stickyやpinに影響しない clip を使用) */
+    overflow-x: clip;
+}
+
+
+/* ナビゲーションバー */
+#index nav
+{
+    /* ナビゲーションリストの場所 */
+    width: 280px;
+    height: 800px;
+    padding: 40px 20px;
+
+    position: absolute;
+    right: 50px;
+    top: 0px;
+
+    text-align: center;
+
+    /* 修正箇所2026/10/15 (旧: z-index:1 で、同じz-index:1の後続のヒーロー動画がナビの上に重なっていたため引き上げ) */
+    z-index: 10;
+}
+
+/* 会社ロゴ threejsで3Dモデルにする予定 */
+#index nav figure img
+{
+    /* ナビゲーションリストの画像 */
+    max-width: 100%;
+    height: auto;
+}
+
+/* ナビゲーションバーのリストエリア */
+#index nav ul
+{
+    /* 二重線を配置するスペース */
+    position: relative;
+
+    /* 上下の余白（二重線との間隔） */
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    z-index: 0;
+}
+
+/* ナビゲーションバーの装飾 */
+#index nav ul::before,
+#index nav ul::after
+{
+    /* 上下の黄色い二重線 */
+    content: "====================";
+    /* 修正箇所2026/10/15 (装飾の記号をスクリーンリーダーが読み上げないよう代替テキストを空にする。非対応ブラウザでは上の指定が使われる) */
+    content: "====================" / "";
+
+    width: 100%;
+
+    color: #d4b246;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+
+    /* 修正箇所2026/10/15 (幅が狭い画面で線が折り返したりはみ出したりしないようにする) */
+    white-space: nowrap;
+    overflow: hidden;
+
+    position: absolute;
+    left: 0;
+
+    /* 修正箇所2026/10/15 (旧: ここに top:0; bottom:0; が共通指定されており、::after が上端にも固定されて下の線が上の線と重なっていた恐れがあるため削除。位置は下の ::before / ::after で個別に指定) */
+
+    z-index: 1;
+
+    /* マウスの邪魔をしないようにスルーさせる */
+    pointer-events: none;
+}
+
+/* 二重線の配置位置詳細 */
+#index nav ul::before {
+    top: 0;
+}
+#index nav ul::after {
+    bottom: 0;
+}
+
+
+/* 各メニューの設定 */
+#index nav ul li
+{
+    /* 各メニューの縦の間隔 */
+    margin-bottom: 25px;
+}
+
+/* メニューのリンク設定 */
+#index nav ul li a
+{
+    text-decoration: none;
+    display: block;
+    /* ホバーから戻るときも滑らかにするため通常時に指定 */
+    transition: color 0.3s;
+}
+
+/* 英語テキスト（上の太字） と リンクテキスト */
+#index .nav_en, #index .nav_labo
+{
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+/* 日本語テキスト（下の小文字） */
+#index .nav_ja
+{
+    display: block;
+    color: #cccccc;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+
+/* 各メニューホバー時の処理 */
+#index nav ul li a:hover .nav_en,
+#index nav ul li a:hover .nav_labo,
+#index nav ul li a:hover .nav_ja
+{
+    /* マウスホバー時のエフェクト(金色に変化) */
+    color: #d4b246;
+}
+
+
+/* ヒーロー */
+#index .hiro
+{
+    width: 100%;
+    /* Dynamic Viewport Heightが高さをマックスにする最新版 */
+    height: 100dvh;
+
+    /* 修正箇所2026/10/15 (旧: 基準になる要素が無く、h1・p・動画が画面全体基準で配置されていた。ヒーローを基準にし、はみ出した動画も切り取る。見た目の位置は従来と同じ) */
+    position: relative;
+    overflow: clip;
+}
+
+/* メインタイトル */
+#index .hiro h1
+{
+    font-size: 80px;
+    color: #ffe277;
+
+    position: absolute;
+    top: 50px;
+    left: 100px;
+
+    z-index: 2;
+}
+
+/* メインタイトルの下に出てくる説明文 */
+#index .hiro p
+{
+    font-size: 30px;
+    color: #b6a154;
+
+    position: absolute;
+    top: 170px;
+    left: 200px;
+    z-index: 2;
+}
+
+/* バックグラウンドビデオ */
+#index .hiro video
+{
+    /* 修正箇所2026/10/15 (旧: width:1500px固定で狭い画面ではみ出していた。画面幅を上限にする) */
+    width: min(1500px, 100%);
+    height: auto;
+    max-height: 650px;
+
+    position: absolute;
+    top: 150px;
+
+    /* 中央配置 */
+    left: 48%;
+    transform: translateX(-50%);
+
+    /* 透明度設定 */
+    opacity: 0.15;
+
+    z-index: 1;
+
+    /* マウスの邪魔をしないようにスルーさせる */
+    pointer-events: none;
+}
+
+/* About Us. 会社概要 */
+#index #about
+{
+    width: 100%;
+    /* height ではなく min-height にする */
+    min-height: 100dvh;
+    background-color: #111111;
+}
+
+/* 見出し */
+#index #about h2
+{
+    font-size: 80px;
+    color: #ffe277;
+    text-align: center;
+
+    display: block;
+    width: 100%;
+}
+
+#index #about h2 span
+{
+    display: block;
+
+    font-size: 40px;
+    color: #b6a154;
+
+
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+/* 六角形を3つ横並びにするコンテナ */
+#index #about ul
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    /* 六角形同士の隙間 */
+    gap: 10rem;
+    padding: 10rem;
+}
+
+/* 六角形単体の設定 */
+#index #about ul li article
+{
+    /* 縦横比を綺麗に保つためのサイズ指定 */
+    width: 400px;
+    height: 420px;
+
+    /* 要素を六角形（縦長）の形に切り抜く魔法の1行らしい */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+    /* 半透明のグレー */
+    background-color: #ffffff30;
+
+    /* 中の文字を上下左右中央に配置する */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+
+    /* 修正箇所2026/10/15 (旧: padding: 20px; と padding: 80px 30px 30px; が二重に書かれ前者は無効だったため整理) */
+    padding: 80px 30px 30px;
+}
+
+#index #about article h3 span
+{
+    display: block;
+}
+
+/* 英字のほう */
+#index #about article h3 span:first-child
+{
+    font-size: 40px;
+    color: #ffe277;
+}
+
+/* 日本語のほう */
+#index #about article h3 span:last-child
+{
+    font-size: 15px;
+    color: #ccc;
+
+    padding-bottom: 15px;
+}
+
+/* それぞれのメッセージ */
+#index #about article p
+{
+    display: block;
+    font-size: 22.5px;
+    line-height: 52px;
+}
+
+/* 価値観のキャッチコピー */
+#index #about article p span
+{
+    font-size: 30px;
+    padding-bottom: 40px;
+}
+
+
+/* 自己紹介エリア */
+/* 横エリア全体の枠（GSAP固定用） */
+#index #area-me
+{
+    width: 100%;
+    /* height ではなく min-height にする */
+    min-height: 100dvh;
+    position: relative;
+}
+
+/* 横に並べるコンテナ（中身を隠すのはここで処理）#index #area-me ul */
+#index .scroll
+{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    /* 修正箇所2026/10/15 (旧: 100vh はスマホのアドレスバー分だけ実際の画面より高くなりズレるため、対応ブラウザでは svh を使用) */
+    height: 100svh;
+    overflow: hidden;
+    will-change: transform;
+
+    pointer-events: none;
+}
+
+/* 各パネルのサイズを画面幅いっぱいに固定 */
+#index .panel
+{
+    width: 100vw;
+    height: 100vh;
+    /* 修正箇所2026/10/15 (100vh → svh。理由は .scroll と同じ) */
+    height: 100svh;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#index #area-me .scroll .panel .Profile
+{
+    font-size: 250px;
+    transform: scaleX(1.6);
+    /* 修正箇所2026/10/15 (旧: display・opacity・pointer-events・user-select が3ブロックで重複していたため共通の .bg_text に集約) */
+}
+
+#index #area-me .scroll .panel .Certifications
+{
+    font-size: 250px;
+    transform: scaleX(0.9);
+    /* 修正箇所2026/10/15 (旧: display・opacity・pointer-events・user-select が3ブロックで重複していたため共通の .bg_text に集約) */
+}
+
+#index #area-me .scroll .panel .message
+{
+    font-size: 250px;
+    transform: scaleX(1.4);
+    /* 修正箇所2026/10/15 (旧: display・opacity・pointer-events・user-select が3ブロックで重複していたため共通の .bg_text に集約) */
+}
+
+#index #area-me .scroll .panel article
+{
+    position: absolute;
+    width: 60vw;
+    height: 70vh;
+    max-width: 1000px;
+    max-height: 700px;
+
+    background: #12121231;
+    border: 1px solid #ffffff1a;
+    backdrop-filter: blur(10px);
+
+    padding: 60px;
+    top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    transform: translateY(50px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+    color: #ffe277;
+
+    pointer-events: auto;
+}
+
+/* h3全体の共通設定 */
+#index #area-me .scroll .panel article h3
+{
+    position: relative;
+    top: 20px;
+
+    display: block;
+    margin-bottom: 25px;
+    font-size: 20px;
+
+    text-align: left;
+}
+
+/* h3の中にあるspanの個別設定 */
+#index #area-me .scroll .panel article h3 span
+{
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+
+/* p全体の共通設定 */
+#index #area-me .scroll .panel article p
+{
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 29.5px;
+    text-align: center;
+}
+
+/* pの中にあるspanの個別設定 */
+#index #area-me .scroll .panel article p span
+{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 29.5px;
+}
+
+/* 4. scroll → の矢印表示 */
+/* 修正箇所2026/10/15 (旧: h4 を「scroll →」の装飾に使っていたが見出しではないため p.scroll_hint に変更。h4の既定の太字は font-weight で維持) */
+#index #area-me .scroll .panel .scroll_hint
+{
+    width: 100%; /* 中央寄せを確実にするため */
+    text-align: center;
+    position: absolute;
+    bottom: 40px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffffff88;
+}
+
+
+/* Business.の部分の設定 */
+#index #area-b
+{
+    width: 100%;
+    /* height ではなく min-height にする */
+    min-height: 100dvh;
+    background-color: #111111;
+}
+
+#index #area-b h2
+{
+    font-size: 80px;
+    color: #ffe277;
+    text-align: center;
+
+    display: block;
+    width: 100%;
+}
+#index #area-b h2 span
+{
+    display: block;
+
+    font-size: 40px;
+    color: #b6a154;
+
+
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+/* Business.の背景の大きな文字の共通設定 */
+#index #area-b .scroll .panel .bg_company,
+#index #area-b .scroll .panel .bg_labo
+{
+    display: inline-block;
+
+    /* 修正箇所2026/10/15 (旧: 背景文字が h2 だったため #index #area-b h2 から width・text-align・color・太字を受け継いでいた。div に変更したので同じ見た目になるよう明示) */
+    width: 100%;
+    text-align: center;
+    color: #ffe277;
+    font-weight: bold;
+
+    opacity: 0.2;
+    pointer-events: none;
+
+    /* コピー選択できないようにする */
+    user-select: none;          /* 標準のブラウザ用 */
+    -webkit-user-select: none;  /* Safari, Chrome用 */
+    -moz-user-select: none;     /* Firefox用 */
+}
+
+/* 上のUme'sCompanyのほう */
+#index #area-b .scroll .panel .bg_company
+{
+    font-size: 150px;
+    transform: scaleX(1.3);
+
+    position: absolute;
+    top: 15%;
+}
+
+/* 下のLabo.のほう */
+#index #area-b .scroll .panel .bg_labo
+{
+    font-size: 200px;
+    transform: scaleX(1.1);
+
+    position: absolute;
+    top: 35%;
+}
+
+/* Ume'sCompany Labo.の箱の設定 */
+#index #area-b .scroll .panel article
+{
+    position: absolute;
+    width: 55vw;
+    height: 55vh;
+    max-width: 900px;
+    max-height: 600px;
+
+    background: #12121231;
+    border: 1px solid #ffffff1a;
+    backdrop-filter: blur(10px);
+
+    top: 120px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    color: #ffe277;
+
+    pointer-events: auto;
+}
+
+/* 見出しの設定 */
+#index #area-b .scroll .panel article h3
+{
+    font-size: 35px;
+    text-align: center;
+}
+
+/* 説明文の設定 */
+#index #area-b .scroll .panel article > p
+{
+    font-size: 20px;
+    line-height: 2;
+    text-align: center;
+    color: #d4b246;
+}
+
+/* scroll → の矢印表示 */
+/* scroll → の矢印表示 */
+#index #area-b .scroll .panel .scroll_hint
+{
+    width: 100%; /* 中央寄せを確実にするため */
+    text-align: center;
+    position: absolute;
+    bottom: 40px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffffff88;
+}
+
+/* Read more● のリンクの共通設定 */
+#index .read_more
+{
+    display: block;
+    text-decoration: none;
+
+    color: #d4b246;
+    font-size: 20px;
+
+    /* 文字の下に薄い線を引く */
+    border-bottom: 1px solid #d4b246;
+
+    width: 130px;
+}
+
+
+/* News & Blog.の部分の設定 */
+#index #news
+{
+    width: 100%;
+    /* height ではなく min-height にする */
+    min-height: 100dvh;
+    background-color: #111111;
+
+    /* 背景の大きな文字の基準にする */
+    position: relative;
+
+    /* はみ出した文字で横スクロールバーが出ないようにする */
+    overflow: hidden;
+}
+
+/* 背景の大きな文字の共通設定 */
+#index #news .bg_word
+{
+    position: absolute;
+
+    font-size: 250px;
+    /* 修正箇所2026/10/15 (旧: h2 の既定の太字だった。div に変更したため同じ見た目になるよう明示) */
+    font-weight: bold;
+
+    /* 文字の中身を透けさせて枠線だけにする */
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff15;
+
+    /* コピー選択できないようにする */
+    user-select: none;
+
+    pointer-events: none;
+}
+
+/* 左上のNews. */
+#index #news .bg_news
+{
+    top: 5%;
+    left: 3%;
+}
+
+/* 右上のBlog. */
+#index #news .bg_blog
+{
+    top: 5%;
+    right: 3%;
+}
+
+/* 左下のPortfolio. */
+#index #news .bg_portfolio
+{
+    bottom: 20%;
+    left: 2%;
+}
+
+/* 右下のdesign. */
+#index #news .bg_design
+{
+    bottom: 20%;
+    right: 3%;
+}
+
+/* 4つのボックスを並べるコンテナ */
+#index #news .news_boxes
+{
+    display: flex;
+    /* 要素の幅は足りなくなったら折り返す設定 */
+    flex-wrap: wrap;
+    /* 左右の要素均等化 */
+    justify-content: space-evenly;
+
+    /* 要素同士の間隔 */
+    gap: 80px 60px;
+
+    padding: 12rem 8rem;
+}
+
+/* 各ボックスの設定 */
+#index #news .news_boxes li
+{
+    width: 40%;
+    min-width: 400px;
+    height: 350px;
+
+    border: 1px solid #ffffff1a;
+
+    /* 中の文字を上下中央に寄せる */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* 各ボックスの見出し */
+#index #news .news_boxes li h3
+{
+    font-size: 30px;
+    color: #ffe277;
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+/* 各ボックスの本文 */
+#index #news .news_boxes li article > p
+{
+    font-size: 20px;
+    color: #d4b246;
+    line-height: 2;
+    text-align: center;
+}
+
+/* ボックスの中のRead more●の位置調整 */
+#index #news .news_boxes li .read_more
+{
+    margin-top: 40px;
+}
+
+/* LINKSの部分の設定 */
+#index #news .links_area
+{
+    text-align: center;
+
+    padding-bottom: 15rem;
+}
+
+/* LINKSのロゴ */
+#index #news .links_area img
+{
+    height: 120px;
+    width: auto;
+}
+
+/* LINKSの見出し */
+#index #news .links_area h2
+{
+    font-size: 30px;
+    color: #ffe277;
+
+    margin: 40px 0;
+}
+
+/* リンクを並べるリスト */
+#index #news .links_area ul
+{
+    display: flex;
+    justify-content: center;
+
+    /* リンク同士の間隔 */
+    gap: 60px;
+}
+
+/* 各リンクの設定 */
+/* 修正箇所2026/10/15 (URL未決定のSNSを a ではなく span で表示するため、同じ見た目を span にも適用) */
+#index #news .links_area ul li a,
+#index #news .links_area ul li span
+{
+    color: #ffffff;
+    font-size: 25px;
+    text-decoration: none;
+
+    /* リンクの下線 */
+    border-bottom: 1px solid #ffffff;
+}
+
+
+/* フッターの設定 */
+#index footer
+{
+    width: 100%;
+    height: 350px;
+    background-color: #181818;
+
+    /* 巨大な文字の基準にする */
+    position: relative;
+
+    /* はみ出した文字で横スクロールバーが出ないようにする */
+    overflow: hidden;
+}
+
+/* フッターの巨大なロゴ文字 */
+#index footer .footer_logo
+{
+    font-size: 250px;
+    white-space: nowrap;
+
+    /* 文字の中身を透けさせて枠線だけにする */
+    color: transparent;
+    -webkit-text-stroke: 2px #ffffff20;
+
+    /* 真ん中から少し下にはみ出す感じに配置 */
+    position: absolute;
+    left: 50%;
+    bottom: -70px;
+    transform: translateX(-50%);
+
+    /* コピー選択できないようにする */
+    user-select: none;
+
+    pointer-events: none;
+}
+
+
+/* Ume'sCompany Labo.の説明ポップアップのcss設定 */
+#labo-popup
+{
+    /* 画面いっぱいに表示して背面を隠す */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* 少し透けさせてグリッドが見えるようにする */
+    background-color: #000000aa;
+
+    /* 最初は表示しない */
+    display: none;
+
+    /* 中身がはみ出たら縦スクロールさせる */
+    overflow-y: auto;
+
+    z-index: 100;
+}
+
+/* 開いたときの表示設定 */
+#labo-popup.active
+{
+    display: block;
+}
+
+/* 中身の白いパネルの共通設定 */
+#labo-popup .labo_panel
+{
+    /* だいたいデザイン案と同じ横幅 */
+    /* 修正箇所2026/10/15 (旧: width:1000px固定で狭い画面ではみ出していた) */
+    width: min(1000px, 92vw);
+    margin: 100px auto;
+
+    background-color: #dddddd;
+    color: #181818;
+
+    border-radius: 30px;
+
+    padding: 60px 80px;
+    box-sizing: border-box;
+
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* パネルの上のロゴ */
+#labo-popup .labo_panel figure img
+{
+    height: 150px;
+    width: auto;
+}
+
+/* パネルの見出し */
+#labo-popup .labo_panel h2
+{
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+/* パネルの本文 */
+#labo-popup .labo_panel p
+{
+    margin-bottom: 25px;
+}
+
+/* 機能の見出しの部分 */
+#labo-popup .labo_panel p span
+{
+    display: block;
+    font-weight: bold;
+    font-size: 22.5px;
+}
+
+/* 調査カテゴリーの表 */
+#labo-popup .labo_panel table
+{
+    width: 100%;
+    margin-top: 40px;
+
+    /* 隣接する線を重ねて表示する設定 */
+    border-collapse: collapse;
+
+    font-size: 15px;
+    text-align: left;
+}
+
+/* 表のマスの設定 */
+#labo-popup .labo_panel th,
+#labo-popup .labo_panel td
+{
+    border: 1px solid #181818;
+    padding: 8px 12px;
+}
+
+/* 表の見出しのマス */
+#labo-popup .labo_panel th
+{
+    background-color: #cccccc;
+}
+
+/* サービス一覧の区切り線 */
+#labo-popup .labo_panel hr
+{
+    border: none;
+    border-top: 1px solid #181818;
+    margin: 30px 0;
+}
+
+/* サービス一覧の2つのリンク */
+#labo-popup .service_links
+{
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 60px;
+}
+
+/* 各サービスへのリンク */
+#labo-popup .service_links a
+{
+    color: #181818;
+    text-decoration: none;
+}
+
+/* サービスのロゴ */
+#labo-popup .service_links img
+{
+    height: 120px;
+    width: auto;
+}
+
+
+/* パネルとパネルの間の×ボタン */
+#labo-popup .close-labo
+{
+    /* 修正箇所2026/10/15 (旧: <p>だったものを <button> にしたため、ボタンとして必要な指定(display・背景/枠なし・フォント継承)を追加) */
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: inherit;
+    line-height: 1.2;
+    background: none;
+    border: 0;
+
+    color: #ffffff;
+    font-size: 40px;
+
+    margin: 20px 0;
+
+    /* カーソルを指マークにする */
+    cursor: pointer;
+}
+
+/* ×ボタンにホバーしたとき少し大きくする */
+#labo-popup .close-labo:hover
+{
+    transform: scale(1.2);
+}
+
+/* パネルとパネルの間のscroll表示 */
+#labo-popup .scroll_down
+{
+    text-align: center;
+
+    color: #d4b246;
+    font-size: 20px;
+
+    margin: 40px 0;
+}
+
+
+   /* 修正箇所2026/10/15 ここから下は新規追加分 */
+
+
+/* 修正箇所2026/10/15 (背景の装飾文字の共通指定。旧: .Profile / .Certifications / .message で同じ内容が3回重複していた) */
+#index .bg_text
+{
+    display: inline-block;
+    font-weight: bold; /* 旧: h2 の既定の太字。div に変更したため明示 */
+    opacity: 0.2;
+    pointer-events: none;
+
+    /* コピー選択できないようにする */
+    user-select: none;          /* 標準のブラウザ用 */
+    -webkit-user-select: none;  /* Safari, Chrome用 */
+    -moz-user-select: none;     /* Firefox用 */
+}
+
+/* 修正箇所2026/10/15 (画面には出さず、検索エンジン・スクリーンリーダーにだけ伝える見出し・表題用) */
+.visually_hidden
+{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 修正箇所2026/10/15 (キーボード操作の人向けのスキップリンク。フォーカスされたときだけ表示) */
+.skip_link
+{
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10000;
+    padding: 10px 16px;
+    background-color: #ffe277;
+    color: #181818;
+}
+.skip_link:focus
+{
+    left: 16px;
+    top: 16px;
+}
+
+/* 修正箇所2026/10/15 (旧: キーボードフォーカスの見た目が無く、cursor:none も相まって操作位置が分からなかったため追加) */
+#index a:focus-visible,
+#index button:focus-visible
+{
+    outline: 2px solid #d4b246;
+    outline-offset: 4px;
+}
+#labo-popup :focus-visible
+{
+    outline: 2px solid #181818;
+    outline-offset: 4px;
+}
+#labo-popup .close-labo:focus-visible
+{
+    outline-color: #ffe277;
+}
+#labo-popup:focus
+{
+    outline: none;
+}
+
+/* 修正箇所2026/10/15 (遷移先が未作成のリンクを「準備中」の見た目にするため追加。旧: href="#" のリンクでページ先頭に飛んでいた) */
+#index .read_more.is_disabled
+{
+    width: fit-content;
+    color: #d4b24688;
+    border-bottom-style: dotted;
+}
+#index #news .links_area ul li span.is_disabled
+{
+    opacity: 0.5;
+    border-bottom-style: dotted;
+}
+
+/* 修正箇所2026/10/15 (ポップアップ内の注記を追加) */
+#labo-popup .labo_panel p.note
+{
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* 修正箇所2026/10/15 (旧: お問い合わせ窓口が無かったため、フッターに案内を追加) */
+#index main .contact_box
+{
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    text-align: center;
+    color: #d4b246;
+    font-size: 20px;
+    line-height: 2;
+}
+#index footer .contact_box .copyright
+{
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #ffffff88;
+}
+
+/* 修正箇所2026/10/15 (スマホ用ナビのメニューボタン。PC幅では非表示) */
+#index .nav_toggle
+{
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+}
+#index .nav_toggle span
+{
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background-color: #ffe277;
+}
+#index .nav_toggle span:nth-child(1) { top: 14px; }
+#index .nav_toggle span:nth-child(2) { top: 21px; }
+#index .nav_toggle span:nth-child(3) { top: 28px; }
+
+
+/* ---- 修正箇所2026/10/15 レスポンシブ対応 (旧: メディアクエリが1つも無くスマホ・タブレットで崩れていた) ---- */
+
+/* タブレット */
+@media (max-width: 1100px)
+{
+    #index #about ul
+    {
+        gap: 4rem;
+        padding: 4rem 2rem;
+    }
+
+    #index #news .news_boxes
+    {
+        padding: 8rem 3rem;
+    }
+
+    #index #news .news_boxes li
+    {
+        width: 45%;
+        min-width: 300px;
+    }
+}
+
+/* スマホ・タブレット: ナビをハンバーガーメニューに */
+/* 修正箇所2026/10/15 (旧: 900px 以下で切り替えていたが、901〜1100px では右上のナビとヒーローの見出しが重なるため、切り替え幅を 1100px に引き上げ。実ブラウザ(Chromium)で確認) */
+@media (max-width: 1100px)
+{
+    html
+    {
+        /* 固定ナビの分だけ、アンカー移動の位置をずらす */
+        scroll-padding-top: 70px;
+    }
+
+    #index nav
+    {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        padding: 8px 16px;
+        background-color: #181818ee;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+
+        z-index: 50;
+    }
+
+    #index nav figure img
+    {
+        height: 40px;
+        width: auto;
+    }
+
+    #index .nav_toggle
+    {
+        display: block;
+    }
+
+    #index nav ul
+    {
+        display: none;
+        flex-basis: 100%;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    #index nav.is-open ul
+    {
+        display: block;
+    }
+
+    /* ヒーロー */
+    #index .hiro h1
+    {
+        font-size: clamp(36px, 9vw, 80px);
+        top: 90px;
+        left: 5vw;
+    }
+
+    #index .hiro p
+    {
+        font-size: clamp(16px, 3.6vw, 30px);
+        top: calc(90px + clamp(36px, 9vw, 80px) * 1.4);
+        left: 5vw;
+        right: 5vw;
+    }
+
+    #index .hiro video
+    {
+        top: 260px;
+    }
+
+    /* 見出し */
+    #index #about h2,
+    #index #area-b h2
+    {
+        font-size: clamp(44px, 12vw, 80px);
+        padding-top: 20px;
+    }
+
+    #index #about h2 span,
+    #index #area-b h2 span
+    {
+        font-size: clamp(22px, 6vw, 40px);
+    }
+
+    /* 自己紹介 */
+    #index #area-me .scroll .panel .Profile,
+    #index #area-me .scroll .panel .Certifications,
+    #index #area-me .scroll .panel .message
+    {
+        font-size: clamp(60px, 16vw, 250px);
+    }
+
+    #index #area-me .scroll .panel article
+    {
+        width: 88vw;
+        height: auto;
+        min-height: 55svh;
+        max-height: 80svh;
+        padding: 28px 20px;
+        top: 80px;
+    }
+
+    #index #area-me .scroll .panel article p,
+    #index #area-me .scroll .panel article p span
+    {
+        font-size: clamp(16px, 4.4vw, 29.5px);
+    }
+
+    /* Business */
+    #index #area-b .scroll .panel .bg_company
+    {
+        font-size: clamp(50px, 17vw, 150px);
+    }
+
+    #index #area-b .scroll .panel .bg_labo
+    {
+        font-size: clamp(60px, 22vw, 200px);
+    }
+
+    #index #area-b .scroll .panel article
+    {
+        width: 88vw;
+        height: auto;
+        min-height: 45svh;
+        padding: 28px 20px;
+        top: 90px;
+    }
+
+    #index #area-b .scroll .panel article h3
+    {
+        font-size: 26px;
+    }
+
+    #index #area-b .scroll .panel article > p
+    {
+        font-size: 16px;
+    }
+
+    #index .scroll .panel .scroll_hint
+    {
+        font-size: 18px;
+    }
+}
+
+/* スマホ */
+@media (max-width: 700px)
+{
+    /* 六角形 */
+    #index #about ul
+    {
+        gap: 2rem;
+        padding: 3rem 1rem;
+    }
+
+    #index #about ul li article
+    {
+        width: min(86vw, 400px);
+        height: auto;
+        aspect-ratio: 400 / 420;
+        padding: 18% 8% 8%;
+    }
+
+    #index #about article h3 span:first-child
+    {
+        font-size: clamp(26px, 8vw, 40px);
+    }
+
+    #index #about article p
+    {
+        font-size: clamp(14px, 4.2vw, 22.5px);
+        line-height: 1.9;
+    }
+
+    #index #about article p span
+    {
+        font-size: clamp(18px, 5.5vw, 30px);
+        padding-bottom: 8px;
+    }
+
+    /* News & Blog */
+    #index #news .bg_word
+    {
+        font-size: clamp(60px, 18vw, 250px);
+    }
+
+    #index #news .news_boxes
+    {
+        padding: 6rem 1rem;
+        gap: 24px;
+    }
+
+    #index #news .news_boxes li
+    {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 280px;
+        padding: 28px 20px;
+    }
+
+    #index #news .links_area ul
+    {
+        gap: 28px;
+    }
+
+    #index #news .links_area ul li a,
+    #index #news .links_area ul li span
+    {
+        font-size: 18px;
+    }
+
+    /* フッター */
+    #index footer
+    {
+        height: 280px;
+    }
+
+    #index footer .footer_logo
+    {
+        font-size: clamp(60px, 17vw, 250px);
+        bottom: -20px;
+    }
+
+    #index footer .contact_box
+    {
+        padding-top: 40px;
+        font-size: 16px;
+    }
+
+    /* ポップアップ */
+    #labo-popup .labo_panel
+    {
+        margin: 60px auto;
+        padding: 32px 20px;
+        border-radius: 20px;
+        font-size: 16px;
+    }
+
+    #labo-popup .labo_panel h2
+    {
+        font-size: 28px;
+    }
+
+    #labo-popup .labo_panel p span
+    {
+        font-size: 18px;
+    }
+
+    #labo-popup .labo_panel figure img
+    {
+        height: 100px;
+    }
+
+    /* 文章中の強制改行は、狭い画面では不自然に折り返すため無効化 */
+    #labo-popup .labo_panel br
+    {
+        display: none;
+    }
+
+    #labo-popup .labo_panel table
+    {
+        display: block;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+
+    #labo-popup .labo_panel th,
+    #labo-popup .labo_panel td
+    {
+        padding: 6px 8px;
+    }
+
+    #labo-popup .service_links
+    {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+}
+
+/* 修正箇所2026/10/15 (旧: 「動きを減らす」設定を考慮していなかったため、アニメーションと遷移を実質無効化) */
+@media (prefers-reduced-motion: reduce)
+{
+    *
+    {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* 修正箇所2026/10/15 (旧: reset.css の overflow:auto を外した結果、横スクロール用コンテナ(.scroll: 300vw幅)が画面外へはみ出してページ全体が横に伸びていたため、横スクロールの親セクションではみ出しを切り取る。画面幅を変えても横スクロールバーが出ないようにする) */
+#index #area-me,
+#index #area-b
+{
+    overflow-x: clip;
+}
+
+/* 修正箇所2026/10/15 (どの画面幅でも画像・長い単語が親要素からはみ出さないようにする) */
+#index main,
+#index footer
+{
+    max-width: 100%;
+}
+#index p,
+#index h1,
+#index h2,
+#index h3
+{
+    overflow-wrap: anywhere;
+}
+
+/* 修正箇所2026/10/15 (中間の画面幅(701〜1100px)で六角形・ボックスの幅が合わず崩れるのを防ぐ) */
+@media (max-width: 1100px) and (min-width: 701px)
+{
+    #index #about ul li article
+    {
+        width: min(340px, 44vw);
+        height: auto;
+        aspect-ratio: 400 / 420;
+        padding: 18% 8% 8%;
+    }
+    #index #about article p
+    {
+        font-size: clamp(15px, 2.2vw, 22.5px);
+        line-height: 1.9;
+    }
+    #index #about article h3 span:first-child
+    {
+        font-size: clamp(28px, 4vw, 40px);
+    }
+    #index #about article p span
+    {
+        font-size: clamp(18px, 2.8vw, 30px);
+        padding-bottom: 8px;
+    }
+    #index #news .bg_word
+    {
+        font-size: clamp(100px, 18vw, 250px);
+    }
+}
+
+/* 修正箇所2026/10/15 (狭い画面では背景の大きな文字同士が重なるため、サイズと位置を調整) */
+@media (max-width: 700px)
+{
+    #index #news .bg_word
+    {
+        font-size: clamp(44px, 12vw, 250px);
+    }
+    #index #news .bg_news      { top: 2%;  left: 3%; }
+    #index #news .bg_blog      { top: 2%;  right: 3%; }
+    #index #news .bg_portfolio { bottom: 26%; left: 2%; }
+    #index #news .bg_design    { bottom: 14%; right: 3%; }
+}
+
+   /* 修正箇所2026/10/15 画面サイズ変更時の崩れ対策(実ブラウザで 320〜1920px を計測して調整した最終分) */
+
+/* 修正箇所2026/10/15 (旧: 背景の装飾文字が px 固定で、実際のフォント(Train One)では画面幅より広くなり両端が見切れていた。文字の実測幅(em換算)から、画面幅に収まる vw を上限として指定) */
+#index #area-me .scroll .panel .Profile        { font-size: min(250px, 9.5vw); }
+#index #area-me .scroll .panel .Certifications { font-size: min(250px, 15vw); }
+#index #area-me .scroll .panel .message        { font-size: min(250px, 9.5vw); }
+#index #area-b .scroll .panel .bg_company      { font-size: min(150px, 6.8vw); }
+#index #area-b .scroll .panel .bg_labo         { font-size: min(200px, 25vw); }
+#index #news .bg_news,
+#index #news .bg_blog                          { font-size: min(250px, 15vw); }
+#index #news .bg_portfolio,
+#index #news .bg_design                        { font-size: min(250px, 10vw); }
+#index footer .footer_logo
+{
+    font-size: min(250px, 12vw);
+    bottom: -0.28em; /* 旧: -70px(250px文字基準)。文字サイズに比例させる */
+}
+
+/* 狭い画面では Portfolio. と design. を上下にずらして重ならないようにする */
+@media (max-width: 700px)
+{
+    #index #news .bg_portfolio,
+    #index #news .bg_design { font-size: 17vw; }
+    #index #news .bg_news,
+    #index #news .bg_blog   { font-size: 15vw; }
+    #index #footer .footer_logo,
+    #index footer .footer_logo { font-size: 15vw; }
+}
+
+/* 修正箇所2026/10/15 (旧: width:130px 固定で、Train One だと「Read more●」が2行に折り返していた) */
+#index .read_more
+{
+    width: fit-content;
+    white-space: nowrap;
+}
+
+/* 修正箇所2026/10/15 (旧: 六角形が 400px 固定で、画面幅によっては3つ目が折り返したり、中の文字が六角形からはみ出したりしていた。
+   六角形の幅(li)を画面幅に合わせて変え、中の文字・余白は六角形の幅に比例(cqw)させて、どの幅でも同じ比率で収まるようにした) */
+#index #about ul li
+{
+    container-type: inline-size;
+    width: min(400px, 86vw);
+}
+#index #about ul li article
+{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 400 / 420;
+    padding: 20cqw 7.5cqw 7.5cqw;
+}
+#index #about ul li article h3 span:first-child { font-size: 10cqw; }
+#index #about ul li article h3 span:last-child  { font-size: 3.75cqw; padding-bottom: 3.75cqw; }
+#index #about ul li article p                   { font-size: 5.6cqw; line-height: 13cqw; }
+#index #about ul li article p span              { font-size: 7.5cqw; padding-bottom: 5cqw; }
+
+@media (min-width: 701px) and (max-width: 1100px)
+{
+    #index #about ul li { width: min(340px, 44vw); }
+}
+@media (min-width: 1101px)
+{
+    #index #about ul
+    {
+        gap: clamp(2rem, 4vw, 10rem);
+        padding: clamp(3rem, 5vw, 10rem);
+    }
+    #index #about ul li
+    {
+        width: min(400px, calc((100vw - 2 * clamp(3rem, 5vw, 10rem) - 2 * clamp(2rem, 4vw, 10rem)) / 3 - 1px));
+    }
+}
+
+/* 修正箇所2026/10/15 (旧: 自己紹介・Businessのパネルが高さ固定(70vh)で、スマホの横向きやノートPCなど画面の高さが低いと文字が枠からはみ出していた。
+   高さを内容に合わせて伸ばし、それでも画面に収まらない場合は枠の中でスクロールできるようにする。実ブラウザで 360x740 / 900x500 / 1366x600 を確認) */
+#index #area-me .scroll .panel article,
+#index #area-b .scroll .panel article
+{
+    max-height: calc(100svh - 100px);
+    overflow-y: auto;
+}
+@media (min-width: 1101px)
+{
+    #index #area-me .scroll .panel article
+    {
+        height: auto;
+        min-height: min(70vh, calc(100svh - 100px));
+    }
+}
+
+/* 画面の高さが低いとき(スマホ横向きなど)は文字と余白を小さくして収める */
+@media (max-height: 700px)
+{
+    #index #area-me .scroll .panel article,
+    #index #area-b .scroll .panel article
+    {
+        min-height: 0;
+        padding: 14px 20px;
+        justify-content: center;
+        gap: 6px;
+    }
+    #index #area-me .scroll .panel article p,
+    #index #area-me .scroll .panel article p span,
+    #index #area-b .scroll .panel article > p
+    {
+        font-size: clamp(12px, 3.6svh, 22px);
+        line-height: 1.6;
+    }
+    #index #area-me .scroll .panel article h3,
+    #index #area-b .scroll .panel article h3
+    {
+        font-size: clamp(16px, 4.4svh, 28px);
+    }
+    #index #area-me .scroll .panel article h3 { position: static; }
+}
+
+/* 修正箇所2026/10/15 (低い画面では、見出し・段落の余白(上下 20〜30px)も詰めないと、Certificationsなど行数の多いパネルが収まらないため) */
+@media (max-height: 700px)
+{
+    #index #area-me .scroll .panel article h3
+    {
+        top: 0;
+        margin-bottom: 4px;
+    }
+    #index #area-me .scroll .panel article h3 span,
+    #index #area-me .scroll .panel article p span
+    {
+        margin-bottom: 2px;
+    }
+    #index #area-me .scroll .panel article p,
+    #index #area-b .scroll .panel article > p
+    {
+        margin-bottom: 8px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Ume'sCompany Labo. プロジェクト一覧ページ (#labo)
+
+考え方:
+・基本(スマホ・狭い画面・背の低い画面)は「縦に積む通常レイアウト」
+・横900px以上 かつ 高さ560px以上のときだけ「画面固定のステージ表示」 */
+
+#labo
+{
+    /* 共通の寸法(ここを変えれば全体が連動する) */
+    --title: clamp(48px, 8vw, 100px);           /* Labo.の文字サイズ */
+    --hub:   clamp(220px, 26vw, 400px);         /* 中央ポータル部分の幅 */
+    --stage: min(100vw, 2000px);                /* ステージ全体の幅 */
+    --gold:  #b6a154;
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+    min-height: 100vh;
+    min-height: 100dvh;                         /* モバイルのアドレスバー対策 */
+    padding: 24px 16px 48px;
+
+    background-color: #181818;
+    color: white;
+
+    /* 中の絶対配置要素の基準にする */
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Labo. の大きな文字(左上・右下) */
+#labo .left,
+#labo .right
+{
+    margin: 0;
+    font-size: var(--title);
+    line-height: 1;
+    text-align: center;
+
+    /* 文字がクリックやホバーの邪魔をしないように */
+    pointer-events: none;
+    user-select: none;
+}
+
+#labo .right
+{
+    margin-top: 32px;
+}
+
+/* 左右のサービス一覧 */
+#labo .left_nav,
+#labo .right_nav
+{
+    box-sizing: border-box;
+    margin: 24px auto;
+
+    /* 2列。1列の幅は最大170px、足りなければ縮む */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 170px));
+    justify-content: center;
+    gap: 30px 20px;
+}
+
+/* 各項目 */
+#labo section article
+{
+    min-width: 0;
+
+    display: flex;
+    /* 画像の下に文字が来るように縦並び */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* 各プロジェクトのリンク */
+#labo section article a
+{
+    display: block;
+    width: 100%;
+    max-width: 170px;
+
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 各プロジェクトの画像 */
+#labo section article a img
+{
+    display: block;
+    height: 80px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    /* 画像とプロジェクト名の隙間 */
+    margin: 0 auto 10px;
+}
+
+#labo section article a p
+{
+    margin: 0;
+    /* 長いサービス名ははみ出さず折り返す */
+    overflow-wrap: anywhere;
+}
+
+/* 中央(ポータルサイトへ) */
+#labo .Ume’sCompany
+{
+    margin: 24px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#labo .Ume’sCompany a
+{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#labo .Ume’sCompany a img
+{
+    display: block;
+    margin: 0 auto;
+
+
+    height: clamp(120px, 20vh, 200px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+#labo .Ume’sCompany p
+{
+    margin: 8px 0 0;
+}
+
+#labo .Ume’sCompany span
+{
+    display: block;
+}
+
+#labo .Ume’sCompany span:last-child
+{
+    background-color: plum;
+    margin: auto;
+}
+
+/* ホバー・キーボード操作時 */
+#labo section article a:hover,
+#labo section article a:focus-visible
+{
+    background-color: #cccccc20;
+    color: var(--gold);
+}
+
+
+
+#labo a:focus-visible
+{
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+
+/* ステージ表示(横900px以上 かつ 高さ560px以上)
+左: サービス / 中央: ポータル / 右: サービス を画面に固定 */
+@media (min-width: 900px) and (min-height: 560px)
+{
+    #labo
+    {
+        padding: 0;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    /* Labo. の文字は背面に */
+    #labo .left,
+    #labo .right
+    {
+        position: fixed;
+        margin: 0;
+        text-align: left;
+        z-index: 0;
+    }
+
+    /* 1600pxより広い画面では、ステージを中央に寄せる */
+    #labo .left
+    {
+        left: calc((100vw - var(--stage)) / 2 + 20px);
+        top: 10px;
+    }
+
+    #labo .right
+    {
+        right: calc((100vw - var(--stage)) / 2 + 20px);
+        bottom: 10px;
+    }
+
+    /* 左右のサービス一覧 */
+    #labo .left_nav,
+    #labo .right_nav
+    {
+        position: fixed;
+        top: 0;
+        z-index: 1;
+
+        /* (ステージ幅 - 中央の幅) ÷ 2 */
+        width: calc((var(--stage) - var(--hub)) / 2);
+        height: 100vh;
+        height: 100dvh;
+        margin: 0;
+        /* 上下のLabo.の文字と重ならないように余白を取る */
+        padding-block: calc(var(--title) + 30px);
+
+        justify-content: space-evenly;
+        align-content: center;
+    }
+
+    #labo .left_nav
+    {
+        left: calc((100vw - var(--stage)) / 2);
+    }
+
+    #labo .right_nav
+    {
+        right: calc((100vw - var(--stage)) / 2);
+    }
+
+    /* 中央 */
+    #labo .Ume’sCompany
+    {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+
+        width: var(--hub);
+        height: 100vh;
+        height: 100dvh;
+        margin: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Scannerのcss */
+#Scanner
+{
+    /* 共通の寸法(ここを変えれば全体が連動する) */
+    --title: clamp(48px, 8vw, 100px);           /* Labo.の文字サイズ */
+    --hub:   clamp(220px, 26vw, 400px);         /* 中央ポータル部分の幅 */
+    --stage: min(100vw, 2000px);                /* ステージ全体の幅 */
+    --gold:  #b6a154;
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+    min-height: 100vh;
+    min-height: 100dvh;                         /* モバイルのアドレスバー対策 */
+    padding: 24px 16px 48px;
+
+    background-color: #181818;
+    color: white;
+
+    /* 中の絶対配置要素の基準にする */
+    position: relative;
+    overflow-x: hidden;
+}
+
+#Scanner .Ume’sCompany
+{
+    margin: 24px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#Scanner .Ume’sCompany a
+{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#Scanner .Ume’sCompany a img
+{
+    display: block;
+    margin: 0 auto;
+
+
+    height: clamp(120px, 20vh, 200px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+#Scanner .Ume’sCompany p
+{
+    margin: 8px 0 0;
+}
+
+#Scanner .Ume’sCompany span
+{
+    display: block;
+}
+
+#Scanner .Ume’sCompany span:last-child
+{
+    background-color: plum;
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+/* Platformのcss */
+#Platform
+{
+    /* 共通の寸法(ここを変えれば全体が連動する) */
+    --title: clamp(48px, 8vw, 100px);           /* Labo.の文字サイズ */
+    --hub:   clamp(220px, 26vw, 400px);         /* 中央ポータル部分の幅 */
+    --stage: min(100vw, 2000px);                /* ステージ全体の幅 */
+    --gold:  #b6a154;
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+    min-height: 100vh;
+    min-height: 100dvh;                         /* モバイルのアドレスバー対策 */
+    padding: 24px 16px 48px;
+
+    background-color: #181818;
+    color: white;
+
+    /* 中の絶対配置要素の基準にする */
+    position: relative;
+    overflow-x: hidden;
+}
+
+#Platform .Ume’sCompany
+{
+    margin: 24px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#Platform .Ume’sCompany a
+{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#Platform .Ume’sCompany a img
+{
+    display: block;
+    margin: 0 auto;
+
+
+    height: clamp(120px, 20vh, 200px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+#Platform .Ume’sCompany p
+{
+    margin: 8px 0 0;
+}
+
+#Platform .Ume’sCompany span
+{
+    display: block;
+}
+
+#Platform .Ume’sCompany span:last-child
+{
+    background-color: plum;
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

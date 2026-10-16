@@ -1,72 +1,656 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
+  <head>
+    <!-- 参考サイト -->
+      <!-- css https://ics.media/ -->
+      <!-- HTML入れ子シート https://yoshikawaweb.com/element/ -->
+      <!-- GSAPのプラグイン https://gsap.com/docs/v3/Installation?tab=cdn&module=esm&require=false&plugins=ScrollTrigger -->
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- 修正箇所2026/10/15 (旧: X-UA-Compatible は IE 用の古い指定で現在は不要なため削除) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- 検索エンジン最適化の設定(SEO) -->
-    <!-- ページのタイトル -->
-  <title>
-    ume'sCompany | セキュリティ事業に向けた技術実験・準備中
-  </title>
-    <!-- タイトルの下に出てくる説明文 -->
-  <meta 
-    name="description"
-    content="セキュリティ事業の立ち上げに挑むUme'sCompany公式サイト。学生エンジニアによる最先端サイバーセキュリティの探求、技術発信、準備中の挑戦プロジェクトの最新情報を集約しています。"
-  >
-    <!-- 検索エンジンによるページの登録を許可する設定(書かなくても同じ動きをする) -->
-  <meta name="robots" content="index, follow">
-    <!-- 正規URLを指定(URLの重複防止と評価の集約ができる) -->
-  <link rel="canonical" href="https://umescompany.com/">
+    <!-- 修正箇所2026/10/15 (ブラウザのUIの色・フォーム等をサイトの黒基調に合わせるため追加) -->
+    <meta name="theme-color" content="#181818">
+    <meta name="color-scheme" content="dark">
 
-
-<!-- WebページがSNSでシェアされた際に、表示させる設定(OGP) -->
-    <!-- ページの種類の設定 -->
-  <meta property="og:type" content="website">
-    <!-- ページのURL -->
-  <meta property="og:url" content="https://umescompany.com/">
-    <!-- 共有時に表示するタイトル -->
-  <meta property="og:title" content="Ume's Company">
-    <!-- 共有時に表示する説明文 -->
-  <meta
-    property="og:description"
-    content="セキュリティ事業の立ち上げに挑むUme'sCompany公式サイト。学生エンジニアによる最先端サイバーセキュリティの探求、技術発信、準備中の挑戦プロジェクトの最新情報を集約しています。"
-  >
-    <!-- 共有時に表示する画像 -->
-  <meta property="og:image" content="https://umescompany.com/img/Image.jpg">
+  <!-- 検索エンジン最適化の設定(SEO) -->
+      <!-- ページのタイトル -->
+    <!-- 事業内容(サプライチェーン/セキュリティ)が検索語に含まれるよう変更。準備中であることは正直に残している) -->
+    <title>
+      Ume'sCompany | サプライチェーンのセキュリティを可視化するLabo.（準備中）
+    </title>
+      <!-- タイトルの下に出てくる説明文 -->
+    <!-- 修正箇所2026/10/15 (旧: 「最先端サイバーセキュリティの探求」が実際の事業内容とズレていた。事業の中身と検索されやすい語(SCS評価制度・取引先・中小企業)に合わせて修正) -->
+    <meta
+      name="description"
+      content="Ume'sCompanyは、大企業と取引先をつなぎ、セキュリティの状況を見える化して改善につなげるプロジェクト「Labo.」を準備中の学生運営サイトです。中小企業のSCS評価制度への備えを支援するサービスを検証しています。"
+    >
+      <!-- 検索エンジンによるページの登録を許可する設定(書かなくても同じ動きをする) -->
+    <meta name="robots" content="index, follow">
+      <!-- 正規URLを指定(URLの重複防止と評価の集約ができる) -->
+    <link rel="canonical" href="https://umescompany.com/">
 
 
-<!-- faviconリンク -->
-  <link rel="icon" href="img/favicon.ico" type="image/png">
+  <!-- WebページがSNSでシェアされた際に、表示させる設定(OGP) -->
+      <!-- ページの種類の設定 -->
+    <meta property="og:type" content="website">
+      <!-- ページのURL -->
+    <meta property="og:url" content="https://umescompany.com/">
+      <!-- 修正箇所2026/10/15 (サイト名とロケールが未指定だったため追加) -->
+    <meta property="og:site_name" content="Ume'sCompany">
+    <meta property="og:locale" content="ja_JP">
+      <!-- 共有時に表示するタイトル -->
+    <!-- 修正箇所2026/10/15 (旧: ブランド名のみで内容が伝わらなかったため、titleと揃えて説明を追加) -->
+    <meta property="og:title" content="Ume'sCompany | サプライチェーンのセキュリティを可視化するLabo.">
+      <!-- 共有時に表示する説明文 -->
+    <meta
+      property="og:description"
+      content="大企業と取引先をつなぎ、セキュリティの状況を見える化して改善につなげるプロジェクト「Labo.」を準備中の学生運営サイトです。"
+    >
+      <!-- 共有時に表示する画像 -->
+    <!-- 修正箇所2026/10/15 (TODO: 白文字ロゴの透過PNGは明るいSNS画面で見えにくい。暗い背景付きの 1200×630px の画像(例: src/img/ogp.png)を用意し、下の2行のURLを差し替えてください。画像はこちらでは作成できないため現状のロゴのまま・altのみ追加) -->
+    <meta property="og:image" content="https://umescompany.com/src/img/umescompany/logo_white.png">
+    <meta property="og:image:alt" content="Ume'sCompanyのロゴ">
+      <!-- 修正箇所2026/10/15 (X(旧Twitter)でカード表示するために追加) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ume'sCompany | サプライチェーンのセキュリティを可視化するLabo.">
+    <meta name="twitter:description" content="大企業と取引先をつなぎ、セキュリティの状況を見える化して改善につなげるプロジェクト「Labo.」を準備中の学生運営サイトです。">
+    <meta name="twitter:image" content="https://umescompany.com/src/img/umescompany/logo_white.png">
 
-<!-- cssリンク -->
-  <!-- メインデザイン -->
-  <link rel="stylesheet" href="css/style.css">
-  
+  <!-- フォントファミリー -->
+      <!-- Webサイトの表示速度を上げるための HTML のヒント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <!-- 本体データ -->
+    <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+
+  <!-- faviconリンク -->
+    <link rel="icon" href="src/img/favicon.ico" type="image/x-icon">
+
+  <!-- cssリンク -->
+    <!-- メインデザイン -->
+    <link rel="stylesheet" href="/src/css/reset.css">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/cursor.css">
+
+  <!-- 構造化データ(JSON-LD) -->
+    <!-- 修正箇所2026/10/15 (検索エンジンに組織名・ロゴ・サイト名を伝えるために追加。法人化前のため legalName などは入れていない。SNSアカウントが決まったら Organization に "sameAs": ["URL", ...] を追加してください) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://umescompany.com/#org",
+          "name": "Ume'sCompany",
+          "alternateName": ["UmesCompany"],
+          "url": "https://umescompany.com/",
+          "logo": "https://umescompany.com/src/img/umescompany/logo_white.png"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://umescompany.com/#website",
+          "url": "https://umescompany.com/",
+          "name": "Ume'sCompany",
+          "inLanguage": "ja",
+          "publisher": { "@id": "https://umescompany.com/#org" }
+        }
+      ]
+    }
+    </script>
+
+  </head>
 
 
-</head>
+  <body id="index">
 
-<body>
+    <!-- 修正箇所2026/10/15 (キーボード操作の人がメニューを飛ばして本文へ移動できるスキップリンクを追加) -->
+    <a href="#main" class="skip_link nomal">本文へスキップ</a>
 
-  <!-- カーソル用のHTML要素-->
-  <div class="custom-cursor-dot"></div>
-  <div class="custom-cursor-outline"></div>
+    <!-- カーソル用のHTML要素-->
+    <div class="cursor_dot"  aria-hidden="true"></div>
+    <div class="cursor_outline"  aria-hidden="true"></div>
 
-  <section>
-    <a href="#"><img src="img/Image.jpg" alt="ロゴの予定のもの"></a>
-    <h1>Ume's Company - テスト環境</h1>
-    <p>現在、学生オーナーがセキュリティ事業に向けて大絶賛準備＆実験中です。</p>
-  </section>
+    <!-- グリッドの要素 -->
+    <div class="grid"  aria-hidden="true"></div>
+
+    <!-- 修正箇所2026/10/15 (旧: <header> が無くランドマークが不足していたため nav を <header> で包んだ) -->
+    <header>
+      <!-- ナビゲーションバー -->
+      <nav class="train_one" aria-label="メインメニュー">
+          <!-- 会社ロゴ threejsで3Dモデルにする予定 -->
+        <figure>
+          <!-- 修正箇所2026/10/15 (decoding="async" を追加し、画像のデコードで描画を止めないようにした。TODO: 画像の実寸を width/height 属性で指定するとレイアウトのズレ(CLS)を防げます) -->
+          <img src="src/img/umescompany/logo_white.png" alt="Ume'sCompany" decoding="async">
+        </figure>
+
+        <!-- 修正箇所2026/10/15 (旧: スマホ用のメニューボタンが無かった。スマホ幅でのみ表示。開閉は ui.js) -->
+        <button type="button" class="nav_toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="メニューを開く">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul id="nav-menu">
+            <!-- 会社概要まで移動 -->
+          <li>
+            <a href="#about">
+              <span class="nav_en">About Us.</span>
+              <span class="nav_ja">会社概要.</span>
+            </a>
+          </li>
+
+            <!-- サービスまで移動 -->
+          <li>
+            <a href="#area-b">
+              <span class="nav_en">Business.</span>
+              <span class="nav_ja">サービス.</span>
+            </a>
+          </li>
+
+            <!-- お知らせ - ブログ -->
+          <li>
+            <a href="#news">
+              <span class="nav_en">News &amp; Blog.</span>
+              <span class="nav_ja">お知らせ - ブログ.</span>
+            </a>
+          </li>
+
+            <!-- お問い合わせまで移動 -->
+          <li>
+            <a href="#contact">
+              <span class="nav_en">Contact Us.</span>
+              <span class="nav_ja">お問い合わせ.</span>
+            </a>
+          </li>
+
+            <!-- Ume'sCompany Labo.の説明ポップアップを開く -->
+          <li>
+            <!-- <a href="/labo/#:~:text=ポータルサイトへ"> -->
+            <a href="/labo/">
+              <span class="nav_labo">Ume'sCompany<br>Labo.</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 修正箇所2026/10/15 (旧: <main> が無かった。ヒーロー〜Newsまでを本文として <main> で包んだ) -->
+    <main id="main">
+
+      <!-- ヒーロー -->
+      <section class="train_one hiro">
+        <h1>Ume'sCompany</h1>
+        <p>交わり.育ち.繋がる.人と企業の間に、信頼が育つ場をつくる</p>
+        <!-- 修正箇所2026/10/15 (装飾の背景動画なので aria-hidden を追加。preload="metadata" で先読み量を抑制。TODO: ファイル名に ' と大文字が含まれURLの扱いで問題になりやすいため、src/video/umes-company.webm などにリネームして下の src も変更してください。poster画像・mp4版の用意も推奨) -->
+        <video autoplay loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="src/video/ume'sCompany.webm" type="video/webm">
+        </video>
+      </section>
 
 
-<!-- GSAPの読み込み -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-<script src="js/main.js"></script>
+      <!-- About Us. 会社概要 -->
+      <section id="about" class="train_one">
+          <!-- 見出し -->
+        <h2>
+          About Us.<br>
+          <span>会社概要</span>
+        </h2>
 
-</body>
+        <!-- 横並びの六角形 -->
+        <ul>
+          <li>
+            <!-- Mission 使命-->
+            <article>
+                <!-- 見出し -->
+              <h3>
+                <span>Mission</span>
+                <span class="nomal">使命</span>
+              </h3>
+                <!-- 本文 -->
+              <p>Ume'sCompanyを起点に
+                <br>人と企業が関わり合い
+                <br>信頼が育つ場をつくる
+              </p>
+            </article>
+          </li>
+
+          <li>
+            <!-- Values 価値観-->
+            <article>
+                <!-- 見出し -->
+              <h3>
+                <span>Values</span>
+                <span class="nomal">価値観</span>
+              </h3>
+                <!-- 本文 -->
+              <p>
+                <span>Score to Improve</span>
+                <br>評価を改善のきっかけに
+              </p>
+            </article>
+          </li>
+
+          <li>
+            <!-- Vision 未来像-->
+            <article>
+                <!-- 見出し -->
+              <h3>
+                <span>Vision</span>
+                <span class="nomal">未来像</span>
+              </h3>
+                <!-- 本文 -->
+              <p>取引全体でセキュリティが
+                <br>見えて・改善され・正当に評価
+                <br>されることが当たり前になる社会
+              </p>
+            </article>
+          </li>
+        </ul>
+
+      </section>
+
+
+      <!-- 横スクロール 自己紹介-->
+      <section id="area-me" class="train_one">
+        <!-- 修正箇所2026/10/15 (旧: このセクションに実見出しの h2 が無く、見出し階層が h2(About)→h3 と飛んでいた。画面には出さない見出しを追加) -->
+        <h2 class="visually_hidden">Profile. 運営者について</h2>
+
+        <ul class="scroll">
+          <li class="panel">
+            <!-- 背景の文字 -->
+            <!-- 修正箇所2026/10/15 (旧: 装飾の背景文字を h2 にしていた。aria-hidden を付けても検索エンジンには見出しとして読まれるため div に変更。h2 の太字を保つ font-weight は CSS の .bg_text で指定) -->
+            <div aria-hidden="true" class="bg_text Profile">Profile.</div>
+            <!-- スライド1: Profile. -->
+            <article class="nomal">
+              <h3>Profile.</h3>
+              <p>
+                運営：Ume（学生）
+                <span>法人設立：準備中</span>
+                <span>現在の状況</span>
+                <span>Labo.最初のプロジェクトを、テスト公開で準備中</span>
+              </p>
+            </article>
+            <!-- スクロール表示 -->
+            <!-- 修正箇所2026/10/15 (旧: 「scroll →」の装飾文字を h4 にしていた。見出しではないので p に変更) -->
+            <p class="scroll_hint" aria-hidden="true">scroll →</p>
+          </li>
+
+          <li class="panel">
+            <!-- 背景の文字 -->
+            <div aria-hidden="true" class="bg_text Certifications">Certifications.</div>
+            <!-- スライド2: Certifications. Training Badge.-->
+            <article>
+              <h3 class="nomal">
+                Certifications.
+                資格.認定
+              </h3>
+              <!-- 修正箇所2026/10/15 (資格名を正式表記に修正: Microsoft Certified: Azure AI Fundamentals。TODO: Credly等の公開バッジURLがあればリンクすると信頼性が上がります) -->
+              <p>
+                EC-Council
+                <span>Certified Cybersecurity Technician (C|CT)</span>
+                <span>Microsoft Certified:</span>
+                <span>Azure AI Fundamentals (AI-900)</span>
+              </p>
+
+              <h3 class="nomal">
+                Training Badge.
+                修了バッジ
+              </h3>
+              <p>
+                AWS Academy Graduate
+                <br>Cloud Foundations
+              </p>
+            </article>
+            <!-- スクロール表示 -->
+            <p class="scroll_hint" aria-hidden="true">scroll →</p>
+          </li>
+
+          <li class="panel">
+            <!-- 背景の文字 -->
+            <div aria-hidden="true" class="bg_text message">Message.</div>
+            <!-- スライド3: Message -->
+            <article class="nomal">
+              <h3>Message.</h3>
+              <p>
+                <span>
+                  私は現在、学びながら、
+                  この事業の立ち上げに挑戦しています。
+                </span>
+
+                <span>
+                  大企業と中小企業の間に、
+                  思いのすれ違いがあるのではないか。
+                  その仮説から、このサービスを考え始めました。
+                  まだ検証の途中だからこそ、
+                  現場の声を聞かせていただきたいと考えています。
+                </span>
+              </p>
+            </article>
+            <!-- スクロール表示 -->
+            <p class="scroll_hint" aria-hidden="true">scroll ↓</p>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <!-- 横スクロール Business.-->
+      <!-- 今は一個しかないので横に行かない -->
+      <section id="area-b" class="train_one">
+          <!-- 見出し -->
+        <h2>
+          Business.
+          <!-- 修正箇所2026/10/15 (誤記: 副題が「会社概要」のコピペのままだったため「サービス」に修正) -->
+          <span>サービス</span>
+        </h2>
+
+        <ul class="scroll">
+
+          <li class="panel">
+            <!-- 背景の文字 -->
+            <div aria-hidden="true" class="bg_text bg_company">Ume'sCompany</div>
+            <div aria-hidden="true" class="bg_text bg_labo">Labo.</div>
+            <!-- スライド1: Ume'sCompany Labo. -->
+            <article>
+              <h3>Ume'sCompany Labo.</h3>
+              <p class="nomal">
+                IT・セキュリティの課題を起点に、
+                アイデアを実際に試し、検証し、
+                解決策へとつなげるプロジェクトシリーズ。
+              </p>
+              <!-- Labo.の説明ポップアップを開く -->
+              <!-- 修正箇所2026/10/15 (旧: href="#" のためクリックでページ先頭へ飛ぶ不具合があった。ポップアップのidを指定。aria-haspopup を追加) -->
+              <a href="#labo-popup" class="read_more open-labo" aria-haspopup="dialog"><p>Read more●</p></a>
+            </article>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <!-- News & Blog. お知らせ - ブログ -->
+      <section id="news" class="train_one">
+        <!-- 修正箇所2026/10/15 (旧: セクションの実見出しが無く、装飾の h2 が4つ並んでいた。画面には出さない見出しを1つだけ置き、装飾文字は div に変更) -->
+        <h2 class="visually_hidden">News &amp; Blog.</h2>
+
+          <!-- 背景の大きな文字 -->
+        <!-- <div aria-hidden="true" class="bg_word bg_news">News.</div>
+        <div aria-hidden="true" class="bg_word bg_blog">Blog.</div>
+        <div aria-hidden="true" class="bg_word bg_portfolio">Portfolio.</div>
+        <div aria-hidden="true" class="bg_word bg_design">design.</div> -->
+
+        <ul class="news_boxes">
+          <li>
+            <!-- News. 進捗報告 -->
+            <article>
+              <h3>News.</h3>
+              <p class="nomal">
+                進捗状況など共有することがあれば更新します
+              </p>
+              <!-- 修正箇所2026/10/15 (旧: 遷移先が無い href="#" のリンクで、押すとページ先頭に飛んでいた。ページを作るまではリンクにせず「Coming soon」と表示。ページができたら <a href="/news/" class="read_more"><p>Read more●</p></a> に戻す) -->
+              <p class="read_more is_disabled">Coming soon●</p>
+            </article>
+          </li>
+
+          <li>
+            <!-- Blog. 技術記事 -->
+            <article>
+              <h3>Blog.</h3>
+              <p class="nomal">
+                技術的な話や開発の泥臭い裏話など掲載予定
+              </p>
+              <p class="read_more is_disabled">Coming soon●</p>
+            </article>
+          </li>
+
+          <li>
+            <!-- // Portfolio. 個人の作品 -->
+            <article>
+              <h3>Portfolio.</h3>
+              <p class="nomal">
+                学校生活で作成したものなど企業関係なく個人のモノ。
+              </p>
+              <p class="read_more is_disabled">Coming soon●</p>
+            </article>
+          </li>
+
+          <li>
+            <!-- // design. アイデア置き場 -->
+            <article>
+              <h3>design.</h3>
+              <p class="nomal">
+                頭の中の構想やアイデアを殴り書きする場所。
+              </p>
+              <p class="read_more is_disabled">Coming soon●</p>
+            </article>
+          </li>
+        </ul>
+
+        <!-- LINKS 各種SNSへのリンク -->
+        <div class="links_area">
+          <figure>
+            <!-- 修正箇所2026/10/15 (画像の遅延読み込みと非同期デコードを追加) -->
+            <!-- <img src="src/img/umescompany/logo_white.png" alt="Ume'sCompany" loading="lazy" decoding="async"> -->
+          </figure>
+          <h2>LINKS</h2>
+          <!-- 修正箇所2026/10/15 (旧: href="#" のSNSリンクで、押すとページ先頭に飛んでいた。URLが決まるまではリンクにしない。決まったら <li><a href="https://..." target="_blank" rel="noopener noreferrer">Instagram.</a></li> に差し替え) -->
+          <ul>
+            <li>
+              <span class="is_disabled" title="準備中">Instagram.</span>
+              <p>Instagramは準備中です。<br>決まり次第こちらに掲載します。</p>
+            </li>
+            <li>
+              <span class="is_disabled" title="準備中">X.</span>
+              <p>X(旧Twitter)は準備中です。<br>決まり次第こちらに掲載します。</p>
+            </li>
+            <li>
+              <span class="is_disabled" title="準備中">Mail.</span>
+              <!-- TODO: メールアドレスかフォームが決まったら、下の1行を差し替え。
+              例: <a href="mailto:contact@umescompany.com">contact@umescompany.com</a> -->
+              <p>お問い合わせ窓口は準備中です。<br>決まり次第こちらに掲載します。</p>
+            </li>
+          </ul>
+        </div>
+        <!-- お問い合わせについて -->
+        <h2 class="visually_hidden">Contact Us. お問い合わせ</h2>
+      </section>
+
+    </main>
+
+
+    <!-- 修正箇所2026/10/15 (旧: footer が /body の外に書かれていて不正なHTMLだった。body の中へ移動) -->
+    <footer id="contact" class="train_one">
+      <!-- フッターの巨大なロゴ文字 -->
+      <p class="footer_logo" aria-hidden="true">Ume'sCompany</p>
+    </footer>
+
+
+    <!-- Ume'sCompany Labo.の説明ポップアップ -->
+    <!-- 修正箇所2026/10/15 (旧: ダイアログとしての指定が無かった。role="dialog" aria-modal="true" aria-label と、フォーカス移動用の tabindex="-1" を追加。aria-hidden の切替は popup.js) -->
+    <section id="labo-popup" class="nomal" role="dialog" aria-modal="true" aria-label="Ume'sCompany Labo. の説明" aria-hidden="true" tabindex="-1">
+
+      <!-- 1枚目: Labo. Scannerの説明 -->
+      <article class="labo_panel" id="panel-scanner">
+        <!-- ロゴ -->
+        <figure>
+          <img src="src/img/labo/Scanner/labo_Scanner_black.png" alt="Ume'sCompany Labo." loading="lazy" decoding="async">
+        </figure>
+
+        <!-- サービス名 -->
+        <h2>Labo. Scanner</h2>
+
+        <p>
+          ドメインひとつで、自社のWeb資産に潜むリスクを可視化
+          <br>ハッカー目線の「自動見回り」で企業の安全を守るセキュリティ診断サービスです
+        </p>
+
+        <p>
+          <!-- 修正箇所2026/10/15 (旧: 「負荷ゼロ・即時診断」「即座に採点」が断定的で、準備中のサービスとして誇大に見える恐れがあった。非侵入型・目安である旨に表現を調整。内容が意図とズレていれば戻してください) -->
+          <span>非侵入型のかんたん診断</span>
+          ご自身が管理するドメインを入力するだけで、システムを止めることなく安全度を目安として採点します
+        </p>
+        <p>
+          <span>網羅的なリスク検知</span>
+          なりすましメール対策の形骸化や証明書の期限切れ・外部への不要な情報露出を検知
+        </p>
+        <p>
+          <span>IT知識不要の改善案内</span>
+          複雑なログ解析は不要。見つかった弱点に対して「次に何をすべきか」を専門用語を使わず具体的に提示します。
+        </p>
+
+        <!-- 調査カテゴリーの表 -->
+        <table>
+          <caption class="visually_hidden">Labo. Scannerの調査カテゴリー</caption>
+          <thead>
+            <tr>
+              <th scope="col">調査カテゴリー</th>
+              <th scope="col">収集・判定できる主な情報</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DNS / メールセキュリティ</td>
+              <td>各種DNSレコード、SPF / DMARCの未設定・設定不備</td>
+            </tr>
+            <tr>
+              <td>Web技術スタック</td>
+              <td>応答コード、Server/X-Powered-By等のバナー露出、HTTPS転送</td>
+            </tr>
+            <tr>
+              <td>SSL / TLS証明書</td>
+              <td>暗号スイート、TLSバージョン、SANs（サブドメイン）、証明書期限</td>
+            </tr>
+            <tr>
+              <td>WHOIS情報</td>
+              <td>登録レジストラ、ネームサーバー、ドメイン失効期限</td>
+            </tr>
+            <tr>
+              <td>公開資産（Shodan）</td>
+              <td>外部公開ポート、推測OS・プロダクトのバージョン</td>
+            </tr>
+            <tr>
+              <td>リスク評価</td>
+              <td>検出された不備に基づく総合リスクスコア、修正対策（Remediation）</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 修正箇所2026/10/15 (診断結果は目安であり安全を保証するものではない旨の注記を追加) -->
+        <p class="note">※診断結果は公開情報にもとづく目安であり、安全性を保証するものではありません。</p>
+      </article>
+
+
+      <!-- 2枚目: Labo. Platformの説明 -->
+      <article class="labo_panel" id="panel-platform">
+
+        <!-- ロゴ -->
+        <figure>
+          <img src="src/img/labo/Platform/labo_Platform_black.png" alt="Ume'sCompany Labo." loading="lazy" decoding="async">
+        </figure>
+        
+        <h2>Labo. Platform</h2>
+
+        <p>
+          「Labo. Scanner」の技術を基盤に、
+          <br>大企業とサプライチェーン（下請け・子会社）を繋ぎ、
+          <br>グループ全体の取引を守るセキュリティ評価・改善プラットフォームです
+        </p>
+
+        <p>
+          <!-- 修正箇所2026/10/15 (旧: 「リスクを避れる一方」が誤字で意味が通らなかった。企画メモの仮説(中小企業は取引を失うリスクを恐れている)に合わせ「抱える一方」と推測して修正。意図と違えば直してください。また「SCS評価制度」が説明なしに使われていたため正式名称を併記。名称は公式発表で要確認) -->
+          国の「SCS評価制度（サプライチェーン強化に向けたセキュリティ対策評価制度）」の登場により、中小企業は取引を失うリスクを抱える一方、
+          <br>大企業は取引先のセキュリティ状況が見えない不安を抱えています。
+          <br>この課題を、双方のメリットに変えて解決します
+        </p>
+
+        <p>
+          <span>サプライチェーンの安心を一元管理（大企業向け）</span>
+          契約検討中や既存の取引先のスコアをダッシュボードで一目で把握。
+          <br>いつから改善を始め、どう脆弱性を克服してきたかのプロセス（履歴）を時系列のグラフで
+          <br>可視化し、サプライチェーン経由のインシデント波及を防ぎます
+        </p>
+
+        <p>
+          <span>「取引をする」ための伴走型サポート（中小企業向け）</span>
+          大企業からの招待コードで、マイページや改善案を無料で利用可能。
+          <br>自動診断と噛み合わせたアンケートから、国の評価制度における立ち位置（目安）を推論し、
+          <br>資金や知識がなくてもチェックシート形式で対策をナビゲートします
+        </p>
+
+        <p>
+          <span>プラットフォーム上で完結する相互認証・連携機能</span>
+          形式的な書類でのやり取りをなくし、専用画面での承認と連絡だけで、大企業の管理画面に
+          <br>下請け企業一覧をスマートに集約・連携します
+        </p>
+      </article>
+
+
+      <!-- 3枚目: サービス一覧へ -->
+      <article class="labo_panel" id="panel-list">
+        <figure>
+          <!-- 修正箇所2026/10/15 (旧: 同じロゴに同じaltが4か所あり冗長だった。装飾画像は alt="" にして読み上げ対象から外した) -->
+          <img src="src/img/labo_black.png" alt="" loading="lazy" decoding="async">
+        </figure>
+
+        <h2>Ume'sCompany Labo.</h2>
+        <a href="/labo/"><p>サービス一覧へ</p></a>
+
+        <!-- 区切り線 -->
+        <hr>
+
+        <p>
+          Labo.最初のプロジェクトを公開準備中です。
+          <br>アイデアを実際に試し、検証し、解決策へとつなげるプロジェクトシリーズ。
+        </p>
+
+        <!-- 各サービスへのリンク -->
+        <div class="service_links">
+          <!-- Scannerへ -->
+          <a href="/labo/Labo_Scanner/" class="jump_panel">
+            <figure>
+              <img src="src/img/labo/Scanner/labo_Scanner_black.png" alt="" loading="lazy" decoding="async">
+            </figure>
+            <p>Labo. Scannerへ</p>
+          </a>
+
+          <!-- Platformへ -->
+          <a href="/labo/Labo_Platform/" class="jump_panel">
+            <figure>
+              <img src="src/img/labo/Platform/labo_Platform_black.png" alt="" loading="lazy" decoding="async">
+            </figure>
+            <p>Labo. Platformへ</p>
+          </a>
+        </div>
+      </article>
+
+      <!-- 閉じるボタン -->
+      <button type="button" class="close-labo" aria-label="閉じる">×</button>
+
+    </section>
+
+
+
+  <!-- GSAPの読み込み -->
+    <!-- 修正箇所2026/10/15 (全scriptに defer を追加し、HTMLの解析をブロックしないようにした。順序は defer でも保たれる。TODO: 可能なら integrity(SRI)属性も付与してください) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <!-- ScrollTriggerの読み込み -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+  <!-- 修正箇所2026/10/15 (旧: jQuery 1.8.3 を http:// で読み込んでいた(HTTPSサイトでブロックされる)。id_scroll.js を素のJSにしたためjQueryは削除) -->
+  <!-- カスタムカーソルの読み込み -->
+    <script defer src="src/js/cursor.js"></script>
+  <!-- ポップアップ設定の読み込み -->
+    <script defer src="src/js/popup.js"></script>
+  <!--スクロール設定の読み込み  -->
+    <script defer src="src/js/scroll.js"></script>
+  <!--idでのスクロール設定の読み込み  -->
+    <script defer src="src/js/id_scroll.js"></script>
+  <!-- 修正箇所2026/10/15 (新規: ナビ開閉・動画停止の処理) -->
+    <script defer src="src/js/ui.js"></script>
+
+  </body>
+
 </html>
-
