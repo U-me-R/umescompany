@@ -1,0 +1,579 @@
+@charset "UTF-8";
+/* ============================================================
+   Labo. Scanner - スタイル
+   ポータルサイト（style.css）のデザイン構想に合わせている:
+     黒基調(#181818) / グリッド背景 / アウトライン文字 / ゴールド系(#ffe277 #d4b246 #b6a154)
+     ガラス調パネル(#12121231 + 1px #ffffff1a) / ナビの「====」二重線
+   reset.css を先に読み込むこと（ポータルと共通）
+   ============================================================ */
+
+:root {
+    --bg: #181818;
+    --bg-deep: #111111;
+    --gold-light: #ffe277;   /* 見出し */
+    --gold: #d4b246;         /* 本文・リンク・線 */
+    --gold-dim: #b6a154;     /* サブ見出し */
+    --text: #ffffff;
+    --text-sub: #cccccc;
+    --text-mute: #ffffff88;
+    --line: #ffffff1a;
+    --panel: #12121231;
+
+    /* 重要度の色: ポータルの金系に合わせつつ、危険度が一目で分かる範囲で彩度を抑える */
+    --sev-high: #e07a6e;
+    --sev-medium: #d4b246;
+    --sev-low: #b6a154;
+    --sev-info: #ffffff88;
+    --sev-good: #8fbf9f;
+}
+
+/* ---------- 共通クラス（ポータルと同じ） ---------- */
+.grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(#ffffff2a 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff2a 1px, transparent 1px);
+    background-size: 70px 60px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.train_one {
+    font-family: 'Train One', "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+.nomal {
+    font-family: "Meiryo", "メイリオ", "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+[hidden] { display: none !important; }
+
+/* ---------- ページ全体 ---------- */
+html { background-color: var(--bg); }
+
+#Scanner {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    min-height: 100dvh;
+    padding: 24px 16px 64px;
+
+    background-color: transparent;   /* 背面のグリッドを見せる */
+    color: var(--text);
+
+    position: relative;
+    z-index: 1;
+    overflow-x: clip;
+}
+
+/* 背景の大きなアウトライン文字（ポータルの .bg_word と同じ手法） */
+#Scanner .bg_word {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+
+    font-size: clamp(90px, 22vw, 260px);
+    font-weight: bold;
+    line-height: 1;
+
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff15;
+
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#Scanner > *:not(.bg_word) { position: relative; z-index: 1; }
+
+/* ---------- ヘッダー ---------- */
+#Scanner .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#Scanner .company_logo {
+    display: block;
+    color: var(--text);
+    transition: opacity 0.3s ease;
+}
+#Scanner .company_logo:hover { opacity: 0.75; }
+#Scanner .company_logo img {
+    display: block;
+    height: clamp(72px, 12vh, 120px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+#Scanner .site-title {
+    font-size: clamp(40px, 7vw, 80px);
+    line-height: 1.1;
+    color: var(--gold-light);
+    text-align: center;
+}
+
+#Scanner .site-tagline {
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--gold-dim);
+    text-align: center;
+    letter-spacing: 0.08em;
+}
+
+/* ナビ: 上下に金色の「====」二重線 */
+#Scanner .main-nav { width: 100%; max-width: 560px; margin: 28px auto 0; }
+
+#Scanner .nav-list {
+    position: relative;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+    text-align: center;
+}
+
+#Scanner .nav-list::before,
+#Scanner .nav-list::after {
+    content: "====================================";
+    content: "====================================" / "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: block;
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    pointer-events: none;
+}
+#Scanner .nav-list::before { top: 0; }
+#Scanner .nav-list::after { bottom: 0; }
+
+#Scanner .nav-list a { display: block; transition: color 0.3s; }
+#Scanner .nav_en {
+    display: block;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    transition: color 0.3s;
+}
+#Scanner .nav_ja {
+    display: block;
+    color: var(--text-sub);
+    font-size: 11px;
+    transition: color 0.3s;
+}
+#Scanner .nav-list a:hover .nav_en,
+#Scanner .nav-list a:hover .nav_ja,
+#Scanner .nav-list a[aria-current="page"] .nav_en,
+#Scanner .nav-list a[aria-current="page"] .nav_ja { color: var(--gold); }
+
+/* ---------- セクション・パネル ---------- */
+#Scanner .main-content { margin-top: 40px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+#Scanner .main-content > * { min-width: 0; }
+
+#Scanner .section-heading {
+    font-size: clamp(26px, 4vw, 40px);
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    text-align: center;
+}
+#Scanner .section-heading span {
+    display: block;
+    margin-top: 6px;
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--gold-dim);
+}
+
+#Scanner .panel,
+#Scanner .scan-form-container,
+#Scanner .results-area,
+#Scanner .loading-area,
+#Scanner .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#Scanner .scan-form-container { padding: clamp(20px, 4vw, 40px); max-width: 760px; margin-inline: auto; }
+
+/* ---------- フォーム ---------- */
+#Scanner .scan-form { display: grid; gap: 14px; }
+
+#Scanner .form-label {
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+#Scanner .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: 18px;
+    color: var(--text);
+    background: #00000055;
+    border: 1px solid var(--line);
+    border-bottom: 1px solid var(--gold);
+    border-radius: 0;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+#Scanner .form-input::placeholder { color: var(--text-mute); }
+#Scanner .form-input:focus { border-color: var(--gold-light); background: #00000088; }
+
+#Scanner .form-help { color: var(--text-mute); font-size: 13px; line-height: 1.7; }
+
+#Scanner .form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text-sub);
+    font-size: 14px;
+    line-height: 1.6;
+    cursor: pointer;
+}
+#Scanner .form-consent input {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--gold);
+}
+
+#Scanner .form-actions { margin-top: 8px; display: flex; justify-content: center; }
+
+/* ボタン（ポータルの Read more● と同じ金の細線スタイル） */
+#Scanner .btn-primary,
+#Scanner .btn-secondary {
+    display: inline-block;
+    padding: 12px 36px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+#Scanner .btn-primary:hover:not(:disabled),
+#Scanner .btn-secondary:hover {
+    color: var(--bg);
+    background-color: var(--gold);
+}
+#Scanner .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; border-style: dotted; }
+#Scanner .btn-secondary { font-size: 15px; padding: 10px 24px; }
+
+#Scanner a:focus-visible,
+#Scanner button:focus-visible,
+#Scanner input:focus-visible,
+#Scanner summary:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+/* ---------- アラート ---------- */
+#Scanner .scan-alert {
+    max-width: 760px;
+    margin: 16px auto 0;
+    padding: 14px 18px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: #12121288;
+    border: 1px solid var(--sev-medium);
+    border-left-width: 4px;
+}
+#Scanner .scan-alert.is-error { border-color: var(--sev-high); }
+#Scanner .scan-alert.is-success { border-color: var(--sev-good); }
+
+/* ---------- 進捗 ---------- */
+#Scanner .loading-area { max-width: 760px; margin: 20px auto 0; padding: 20px; }
+
+#Scanner .progress-indicator { display: flex; align-items: center; gap: 14px; }
+
+#Scanner .scan-progress {
+    flex: 1;
+    height: 8px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: #ffffff15;
+}
+#Scanner .scan-progress::-webkit-progress-bar { background: #ffffff15; }
+#Scanner .scan-progress::-webkit-progress-value { background: var(--gold); transition: width 0.4s ease; }
+#Scanner .scan-progress::-moz-progress-bar { background: var(--gold); }
+
+#Scanner .progress-text { min-width: 3.5em; text-align: right; color: var(--gold-light); font-weight: bold; }
+
+#Scanner .scan-log { margin-top: 14px; max-height: 160px; overflow-y: auto; }
+#Scanner .log-list { display: grid; gap: 4px; font-size: 13px; color: var(--text-sub); }
+#Scanner .log-list li::before { content: "● "; color: var(--gold); font-size: 9px; vertical-align: 1px; }
+
+/* ---------- 概要（統計カード） ---------- */
+#Scanner .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 760px;
+    margin-inline: auto;
+}
+#Scanner .stat-card { padding: 22px 16px; text-align: center; }
+#Scanner .stat-title { font-size: 14px; font-weight: normal; color: var(--text-sub); margin-bottom: 8px; }
+#Scanner .stat-value { font-size: clamp(36px, 6vw, 56px); color: var(--gold-light); line-height: 1.1; }
+
+/* ---------- 結果 ---------- */
+#Scanner .results-area { padding: clamp(20px, 4vw, 40px); }
+
+#Scanner .result-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 28px;
+    align-items: center;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+}
+
+#Scanner .score-ring {
+    --pct: 0;
+    --ring: var(--gold);
+    width: clamp(130px, 22vw, 180px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(closest-side, var(--bg) 78%, transparent 80% 100%),
+        conic-gradient(var(--ring) calc(var(--pct) * 1%), #ffffff15 0);
+}
+#Scanner .score-ring > div { text-align: center; line-height: 1.1; }
+#Scanner .score-num { display: block; font-size: clamp(36px, 7vw, 56px); color: var(--ring); font-weight: bold; }
+#Scanner .score-max { display: block; font-size: 13px; color: var(--text-mute); margin-top: 4px; }
+
+#Scanner .result-meta h3 { font-size: clamp(22px, 3.4vw, 32px); color: var(--gold-light); overflow-wrap: anywhere; }
+#Scanner .result-band { margin-top: 6px; font-size: 18px; font-weight: bold; color: var(--ring-text, var(--gold)); }
+#Scanner .result-note { margin-top: 10px; font-size: 13px; line-height: 1.8; color: var(--text-mute); }
+#Scanner .result-actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+#Scanner .sev-summary { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; }
+
+#Scanner .badge {
+    display: inline-block;
+    padding: 2px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid currentColor;
+    color: var(--sev-info);
+    white-space: nowrap;
+}
+#Scanner .badge.sev-high { color: var(--sev-high); }
+#Scanner .badge.sev-medium { color: var(--sev-medium); }
+#Scanner .badge.sev-low { color: var(--sev-low); }
+#Scanner .badge.sev-info { color: var(--sev-info); }
+
+#Scanner .subheading {
+    margin: 32px 0 14px;
+    font-size: 20px;
+    color: var(--gold-light);
+    padding-left: 12px;
+    border-left: 3px solid var(--gold);
+}
+
+#Scanner .finding-list { display: grid; gap: 12px; }
+#Scanner .finding {
+    background: #00000033;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--sev-info);
+}
+#Scanner .finding.sev-high { border-left-color: var(--sev-high); }
+#Scanner .finding.sev-medium { border-left-color: var(--sev-medium); }
+#Scanner .finding.sev-low { border-left-color: var(--sev-low); }
+
+#Scanner .finding summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    color: var(--text);
+}
+#Scanner .finding summary::-webkit-details-marker { display: none; }
+#Scanner .finding summary::after { content: "＋"; margin-left: auto; color: var(--gold); }
+#Scanner .finding[open] summary::after { content: "－"; }
+#Scanner .finding-title { overflow-wrap: anywhere; }
+#Scanner .finding-category { font-size: 12px; color: var(--text-mute); white-space: nowrap; }
+
+#Scanner .finding-body { padding: 0 16px 16px; display: grid; gap: 10px; font-size: 14px; line-height: 1.8; }
+#Scanner .finding-body dt { color: var(--gold); font-weight: bold; font-size: 13px; }
+#Scanner .finding-body dd { color: var(--text-sub); overflow-wrap: anywhere; }
+
+#Scanner .empty-state {
+    padding: 24px;
+    text-align: center;
+    color: var(--sev-good);
+    border: 1px dashed var(--line);
+}
+
+/* 技術詳細 */
+#Scanner .tech-details { margin-top: 32px; border-top: 1px solid var(--line); }
+#Scanner .tech-details > summary {
+    padding: 16px 0;
+    cursor: pointer;
+    color: var(--gold);
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#Scanner .table-wrap { overflow-x: auto; margin-bottom: 18px; }
+#Scanner table.data {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+}
+#Scanner table.data th,
+#Scanner table.data td {
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    vertical-align: top;
+    overflow-wrap: anywhere;
+}
+#Scanner table.data th { width: 11em; background: #ffffff0d; color: var(--gold); font-weight: bold; white-space: nowrap; }
+#Scanner table.data td { color: var(--text-sub); }
+
+/* ---------- 履歴ページ ---------- */
+#Scanner .history-table td.num { color: var(--gold-light); font-weight: bold; }
+#Scanner .history-table a { color: var(--gold); border-bottom: 1px solid var(--gold); }
+#Scanner .history-table a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+#Scanner .history-note { margin-top: 14px; font-size: 13px; line-height: 1.8; color: var(--text-mute); }
+#Scanner .back-link {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    transition: color 0.3s, border-color 0.3s;
+}
+#Scanner .back-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+/* ---------- フッター ---------- */
+#Scanner .site-footer {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--text-mute);
+    font-size: 12px;
+    line-height: 1.9;
+}
+#Scanner .site-footer a { color: var(--gold); border-bottom: 1px solid var(--gold); }
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 700px) {
+    #Scanner { padding-inline: 12px; }
+    #Scanner .nav-list { gap: 8px; }
+    #Scanner .nav_en { font-size: 15px; }
+    #Scanner .result-head { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    #Scanner .result-actions { justify-content: center; }
+    #Scanner .btn-primary { width: 100%; }
+    #Scanner table.data th { white-space: normal; width: 7em; }
+    #Scanner .finding summary { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #Scanner * { transition: none !important; animation: none !important; }
+}
+
+/* 表のセル内の改行（複数値を1セルに並べる用） */
+#Scanner table.data td { white-space: pre-wrap; }
+
+/* ============================================================
+   ログイン対応で追加した部品
+   ============================================================ */
+#Scanner .panel-box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: clamp(16px, 3vw, 28px);
+    margin-bottom: 20px;
+}
+#Scanner .box-title { font-size: 20px; color: var(--gold-light); margin-bottom: 14px; overflow-wrap: anywhere; }
+#Scanner .consent-text { font-size: 14px; line-height: 1.9; color: var(--text-sub); margin-bottom: 16px; }
+
+/* ユーザー表示 */
+#Scanner .user-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-top: 8px; font-size: 13px; color: var(--text-sub); }
+#Scanner .user-bar .badge { color: var(--gold); }
+
+/* タブ / リンク風ボタン */
+#Scanner .tabs { display: flex; gap: 0; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+#Scanner .tab { flex: 1; padding: 12px 0; font-size: 16px; font-weight: bold; color: var(--text-mute); border-bottom: 2px solid transparent; cursor: pointer; transition: color .3s, border-color .3s; }
+#Scanner .tab[aria-selected="true"] { color: var(--gold-light); border-bottom-color: var(--gold); }
+#Scanner .tab:hover { color: var(--gold); }
+#Scanner .link-button { color: var(--gold); font-size: 14px; border-bottom: 1px solid var(--gold); cursor: pointer; }
+#Scanner .link-button:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+/* 組織の種類の選択 */
+#Scanner .choices { display: grid; gap: 12px; }
+#Scanner .choice { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 1px solid var(--line); background: #00000033; cursor: pointer; transition: border-color .3s; }
+#Scanner .choice:has(input:checked) { border-color: var(--gold); }
+#Scanner .choice input { margin-top: 4px; accent-color: var(--gold); }
+#Scanner .choice strong { display: block; color: var(--gold-light); }
+#Scanner .choice small { display: block; margin-top: 4px; color: var(--text-sub); line-height: 1.7; }
+
+/* フォーム横並び・操作ボタン */
+#Scanner .inline-form { display: grid; gap: 10px; }
+#Scanner .inline-form .btn-primary, #Scanner .inline-form .btn-secondary { justify-self: start; }
+#Scanner .row-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+#Scanner .list-table td.row-actions { display: table-cell; }
+#Scanner .list-table td.row-actions > * { margin: 0 8px 6px 0; }
+#Scanner .list-table th { width: auto; white-space: nowrap; }
+#Scanner .list-table td { vertical-align: middle; }
+#Scanner .list-table .btn-secondary { padding: 6px 14px; font-size: 13px; }
+#Scanner .btn-secondary:disabled { opacity: .4; cursor: not-allowed; border-style: dotted; }
+#Scanner .btn-danger { color: var(--sev-high); border-color: var(--sev-high); }
+#Scanner .btn-danger:hover { background-color: var(--sev-high); color: var(--bg); }
+#Scanner .table-link { color: var(--gold); border-bottom: 1px solid var(--gold); transition: color .3s, border-color .3s; }
+#Scanner .table-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
+#Scanner .status-cell .scan-progress { width: 100%; max-width: 220px; display: block; margin-bottom: 4px; }
+#Scanner .score-chip { font-weight: bold; white-space: nowrap; }
+
+/* 招待コード */
+#Scanner .code-box { display: grid; gap: 10px; justify-items: start; margin: 16px 0; padding: 16px; border: 1px dashed var(--gold); background: #00000033; }
+#Scanner .code-box .code { font-family: 'Train One', monospace; font-size: clamp(20px, 5vw, 30px); letter-spacing: .15em; color: var(--gold-light); overflow-wrap: anywhere; }
+#Scanner .code-box small { color: var(--text-sub); line-height: 1.7; }
+
+/* グラフ */
+#Scanner .chart-wrap { margin: 8px 0 4px; }
+#Scanner .trend-chart { width: 100%; height: auto; max-height: 280px; display: block; }
+#Scanner .chart-grid { stroke: #ffffff22; stroke-width: 1; }
+#Scanner .chart-label { fill: var(--text-mute); font-size: 12px; }
+#Scanner .chart-line { fill: none; stroke: var(--gold); stroke-width: 2; }
+#Scanner .chart-dot { stroke: var(--bg); stroke-width: 2; }
+#Scanner .sparkline { width: 110px; height: 30px; display: block; }
+#Scanner .sparkline .chart-line { stroke-width: 1.8; }
+
+#Scanner .results-area .subheading:first-child { margin-top: 0; }
+#Scanner .main-content > section + section { margin-top: 8px; }
