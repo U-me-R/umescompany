@@ -114,7 +114,7 @@
     var h = document.getElementById('site-header');
     h.textContent = '';
     h.appendChild(el('a', { class: 'company_logo', href: 'https://umescompany.com/', 'aria-label': "Ume'sCompany ポータルサイトへ" },
-      [el('img', { src: 'img/Umescompany/logo_white.png', alt: "Ume'sCompany" })]));
+      [el('img', { src: '/src/img/Umescompany/logo_white.png', alt: "Ume'sCompany" })]));
     h.appendChild(el('h1', { class: 'site-title train_one', text: 'Labo. Scanner' }));
     h.appendChild(el('p', { class: 'site-tagline', text: 'External Exposure Check' }));
 
